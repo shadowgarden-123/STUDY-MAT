@@ -11,7 +11,7 @@ Projet MIAGE L2 - Infographie & Web design.
 
 ## En ligne
 
-https://univshare.freebuff.app/
+https://site-d7de1872e7c0463d9dfe600ec86463a8.freebuff.page
 
 ## Fonctionnalités
 

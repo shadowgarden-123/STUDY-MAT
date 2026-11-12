@@ -1,0 +1,10 @@
+{
+  "name": "univ-share-preview",
+  "compatibility_date": "2026-11-12",
+  "main": "sites/worker.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  }
+}
