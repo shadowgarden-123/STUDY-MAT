@@ -110,7 +110,21 @@ export default function Home() {
     limit: 96,
     offset: 0,
   });
-  const counts = useQuery(api.listings.modeCounts) as ModeCounts | undefined;
+  // Compteurs des onglets : trois appels au fil existant avec une limite de 1.
+  // Seul le total renvoyé nous intéresse, et le backend déjà déployé connaît
+  // cette requête.
+  const donCount = useQuery(api.listings.list, { mode: "don", limit: 1 });
+  const echangeCount = useQuery(api.listings.list, { mode: "echange", limit: 1 });
+  const prixCount = useQuery(api.listings.list, { mode: "prix", limit: 1 });
+  const counts: ModeCounts | undefined =
+    donCount && echangeCount && prixCount
+      ? {
+          don: donCount.total,
+          echange: echangeCount.total,
+          prix: prixCount.total,
+          total: donCount.total + echangeCount.total + prixCount.total,
+        }
+      : undefined;
 
   const updateParam = (key: "cat" | "mode", value: string | null) => {
     const next = new URLSearchParams(params);

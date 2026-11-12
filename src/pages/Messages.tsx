@@ -19,9 +19,31 @@ export default function Messages() {
   const items = useQuery(api.conversations.list, { scope }) as
     | ConversationListItem[]
     | undefined;
-  const exchanges = useQuery(api.conversations.exchanges) as
-    | ExchangeItem[]
+  // Les échanges sont déduits des conversations déjà chargées : une annonce
+  // donnée est terminée, sinon le rendez-vous reste à convenir. Aucune requête
+  // supplémentaire n'est nécessaire.
+  const allConversations = useQuery(api.conversations.list, { scope: "tout" }) as
+    | ConversationListItem[]
     | undefined;
+  const exchanges: ExchangeItem[] | undefined = allConversations?.map(
+    (item) => ({
+      conversationId: item._id,
+      role: item.role,
+      state: item.listing.status === "donne" ? "termine" : "a-convenir",
+      updatedAt: item.updatedAt,
+      listing: {
+        _id: item.listing._id,
+        title: item.listing.title,
+        status: item.listing.status,
+        photoUrl: item.listing.photoUrl,
+      },
+      other: {
+        _id: item.other._id,
+        displayName: item.other.displayName,
+        level: item.other.level,
+      },
+    }),
+  );
 
   return (
     <div className="us-container us-page">

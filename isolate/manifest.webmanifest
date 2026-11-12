@@ -1,0 +1,25 @@
+{
+  "name": "Univ-Share — le matériel du campus",
+  "short_name": "Univ-Share",
+  "description": "Donner, échanger, partager le matériel du campus.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5F7F2",
+  "theme_color": "#0F6B4F",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
