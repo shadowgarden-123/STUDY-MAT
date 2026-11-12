@@ -1,6 +1,7 @@
 import { NavLink } from "react-router";
 import { useQuery } from "convex/react";
 import { Icon, type IconName } from "@/components/icons/Icon";
+import { useSession } from "@/auth/AuthContext";
 import { api } from "@/convex/_generated/api";
 import { fr } from "@/i18n/fr";
 
@@ -14,13 +15,28 @@ type Tab = {
 };
 
 export function TabBar() {
+  const { isAuthenticated } = useSession();
   const unread = useQuery(api.conversations.unreadCount) ?? 0;
-  const tabs: Tab[] = [
-    { to: "/annonces", label: fr.nav.home, icon: "home" },
-    { to: "/publier", label: fr.nav.publish, icon: "plus", primary: true },
-    { to: "/messages", label: fr.nav.messages, icon: "message", unread: true },
-    { to: "/profil", label: fr.nav.profile, icon: "user" },
-  ];
+
+  // Même nombre d'entrées dans les deux cas : la barre ne saute pas quand on
+  // se connecte, et chaque libellé annonce exactement sa destination.
+  const tabs: Tab[] = isAuthenticated
+    ? [
+        { to: "/annonces", label: fr.nav.home, icon: "home" },
+        { to: "/publier", label: fr.nav.publish, icon: "plus", primary: true },
+        { to: "/messages", label: fr.nav.messages, icon: "message", unread: true },
+        { to: "/profil", label: fr.nav.profile, icon: "user" },
+      ]
+    : [
+        { to: "/annonces", label: fr.nav.home, icon: "home" },
+        { to: "/publier", label: fr.nav.publish, icon: "plus", primary: true },
+        {
+          to: "/comment-ca-marche",
+          label: fr.nav.howItWorksShort,
+          icon: "info",
+        },
+        { to: "/connexion", label: fr.actions.login, icon: "user" },
+      ];
 
   return (
     <nav className="us-tabbar" aria-label="Navigation principale">

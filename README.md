@@ -67,3 +67,4 @@ src/lib          formats, recherche, compression des photos
 - `docs/repartition-des-taches.txt`
 - `docs/choix-graphiques.txt`
 - `docs/parcours-utilisateur.txt`
+- `docs/politique-ux.txt`

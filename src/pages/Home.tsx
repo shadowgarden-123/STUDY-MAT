@@ -244,7 +244,7 @@ export default function Home() {
 
             {!isAuthenticated ? (
               <p className="us-caption home__guest-note">
-                {fr.journey.nudge.title}{" "}
+                <span>{fr.journey.nudge.browse}</span>
                 <Link className="us-link" to="/inscription">
                   {fr.journey.nudge.action}
                 </Link>

@@ -6,11 +6,12 @@ export const fr = {
     course: "Projet MIAGE L2 · Infographie & Web design",
   },
   nav: {
-    home: "Accueil",
+    home: "Annonces",
     publish: "Publier",
     messages: "Messages",
     profile: "Profil",
     howItWorks: "Comment ça marche",
+    howItWorksShort: "Le principe",
     privacy: "Données et confidentialité",
     alerts: "Alertes",
   },
@@ -486,9 +487,9 @@ export const fr = {
   },
   journey: {
     welcome: {
-      eyebrow: "Le matériel du campus, en circulation",
-      title: "Donner, échanger, partager le matériel du campus.",
-      lead: "Livres, cours et TD, composants, matériel de labo : ce qui dort dans un sac peut servir à quelqu'un d'autre. En don, en échange ou à petit prix.",
+      eyebrow: "Entraide étudiante · campus",
+      title: "Trouve ton matériel de TP. Donne ce qui ne te sert plus.",
+      lead: "Livres, cours et TD, composants, matériel de labo : ce qui dort dans ton sac sert peut-être à quelqu'un cette semaine. En don, en échange ou à petit prix, sans quitter le campus.",
       proofs: [
         {
           title: "Trouve en une minute",
@@ -521,6 +522,8 @@ export const fr = {
       text: "Gratuit, une minute, un code reçu par e-mail.",
       action: "Créer un compte",
       later: "Plus tard",
+      browse:
+        "Tu peux tout regarder librement. Pour contacter un donneur ou publier, un compte suffit.",
     },
     tabs: {
       label: "Filtrer par mode",

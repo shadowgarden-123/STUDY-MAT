@@ -1,0 +1,139 @@
+UNIV-SHARE — POLITIQUE UX
+Règles d'interface appliquées au site
+------------------------------------
+
+Ce document fixe les règles suivies pour concevoir les écrans. Il sert à
+trancher les prochains choix sans repartir de zéro, et à expliquer la
+démarche à l'oral le jour de la soutenance.
+
+
+1. COMPRENDRE EN UN REGARD
+--------------------------
+
+Un visiteur doit pouvoir répondre à trois questions sans faire défiler :
+qu'est-ce que c'est, à quoi ça sert, et que fait-on maintenant.
+
+- Une seule phrase d'accroche par écran, en clair, sans slogan abstrait.
+  Exemple retenu : « Trouve ton matériel de TP. Donne ce qui ne te sert plus. »
+- Sous l'accroche, une précision qui nomme les objets réels (livres, cours
+  et TD, composants, matériel de labo), pas des catégories vagues.
+- Un seul bouton principal par écran, toujours à la même place. Les actions
+  secondaires restent visibles mais plus discrètes.
+- Le produit se montre : la page d'accueil affiche de vraies annonces du
+  campus, avec leur lieu et leur ancienneté. On ne demande pas d'imaginer.
+
+
+2. NAVIGATION
+-------------
+
+Règle : un libellé = une destination, jamais un synonyme.
+
+- Barre du bas, quatre entrées, toujours les mêmes places :
+  Annonces — Publier — Messages — Profil (membre)
+  Annonces — Publier — Le principe — Se connecter (visiteur)
+- « Publier » occupe le centre : c'est le geste qui fait vivre la
+  plateforme, il reste accessible d'un pouce.
+- « Accueil » a disparu au profit d'« Annonces » : le mot annonce ce que
+  la personne va trouver en appuyant.
+- « Comment ça marche » n'est pas un onglet du quotidien : il vit dans le
+  pied de page et dans l'onglet « Le principe » côté visiteur.
+- Le logo ramène à la page de présentation pour un visiteur, au fil pour
+  un membre.
+- Aucune impasse : chaque écran propose une sortie (retour, lien, action).
+
+
+3. CONFIANCE
+------------
+
+Trois objections reviennent sur ce type de site. Elles ont une réponse
+visible, pas une promesse cachée dans une page de conditions :
+
+- « Est-ce que c'est fiable ? » — les annonces affichent leur lieu de
+  remise, leur date et leur statut réel ; les données montrées sont de
+  vraies données du backend.
+- « On va me demander mon numéro ou de payer ? » — la messagerie interne
+  remplace le numéro, et aucun paiement ne passe par le site. Les deux
+  phrases sont affichées sur l'accueil.
+- « Est-ce que je peux essayer avant de m'inscrire ? » — « Visiter sans
+  compte » ouvre tout le catalogue. Le compte n'est exigé qu'au moment
+  où il devient utile : contacter, publier, garder.
+
+Principe : on demande une information au moment où elle sert, jamais avant.
+
+
+4. GESTES ET RETOURS
+--------------------
+
+- Toute action déclenche une réponse visible : changement d'état du
+  bouton, message de confirmation, ou déplacement.
+- Actions destructrices (supprimer, se marquer comme donné) : jamais
+  immédiates, toujours confirmées, et annulables dix minutes quand c'est
+  possible.
+- États obligatoires pour chaque liste : chargement (squelettes),
+  vide (phrase qui explique quoi faire), erreur (cause + solution).
+- Aucun bouton mort. Ce qui n'existe pas encore est annoncé comme tel.
+
+
+5. MOUVEMENT
+------------
+
+Le mouvement sert à expliquer, pas à décorer.
+
+- Une seule séquence d'arrivée par écran, jouée une fois au chargement.
+- Durées courtes : 120 à 420 ms, toujours avec la même courbe
+  (cubic-bezier 0.2, 0.8, 0.2, 1).
+- Le survol et l'appui répondent en 120 à 200 ms : l'interface confirme
+  qu'elle a reçu le geste.
+- Aucune animation en boucle, aucun défilement animé, aucun clignotement.
+- prefers-reduced-motion respecté : les personnes qui le demandent ne
+  voient aucune animation et tout le contenu reste visible.
+
+
+6. LISIBILITÉ ET ACCESSIBILITÉ
+------------------------------
+
+- Contrastes vérifiés : encre sur fond 15,55:1, blanc sur vert 6,49:1,
+  encre sur jaune 9,37:1.
+- Cibles tactiles de 44 px minimum, y compris dans la barre du bas.
+- Focus clavier visible partout (contour jaune de 3 px).
+- Le sens ne dépend jamais de la couleur seule : le mode d'une annonce
+  est écrit en toutes lettres (Don, Échange, Prix symbolique).
+- Mets et titres en deux familles maximum, tailles de texte jamais sous
+  13 px, longueurs de ligne inférieures à 80 caractères.
+
+
+7. TON ET ÉCRITURE
+------------------
+
+- Tutoiement, phrases courtes, verbes à l'actif.
+- Un bouton dit ce qu'il produit : « Publier une annonce » donne
+  « Ton annonce est en ligne ».
+- Une erreur dit ce qui s'est passé et quoi faire, sans s'excuser.
+- Un écran vide est une invitation : « Aucun objet en cours. Contacte un
+  donneur ou publie un objet pour commencer. »
+- Pas d'emoji, pas de jargon technique, pas de majuscules décoratives.
+
+
+8. CE QUE NOUS REFUSONS
+-----------------------
+
+- Les carrousels et les animations automatiques.
+- Les fenêtres qui s'ouvrent sans que la personne l'ait demandé.
+- Les formulaires longs : le compte demande un nom, un niveau, un code.
+- Les fausses données pour remplir l'interface.
+- Les parcours qui obligent à créer un compte avant d'avoir vu le
+  produit.
+
+
+9. VÉRIFICATION
+---------------
+
+Avant de considérer un écran terminé :
+- il est lisible à 390 px de large et à 1440 px ;
+- on peut y arriver au clavier et en ressortir ;
+- les trois états (chargement, vide, erreur) existent ;
+- aucune animation ne tourne en boucle ;
+- les contrastes et les cibles tactiles sont respectés.
+
+Ces règles complètent, sans les remplacer, les notes de cadrage et la
+justification graphique déjà présentes dans docs/.
