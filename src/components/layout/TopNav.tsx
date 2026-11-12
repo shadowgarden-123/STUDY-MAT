@@ -19,9 +19,9 @@ export function TopNav() {
   return (
     <header className="us-topnav">
       <div className="us-container us-topnav__inner">
-        <Logo href="/" />
+        <Logo href="/annonces" />
         <nav className="us-topnav__links" aria-label="Navigation principale">
-          <NavLink to="/" end className="us-topnav__link">
+          <NavLink to="/annonces" className="us-topnav__link">
             {fr.nav.home}
           </NavLink>
           <NavLink

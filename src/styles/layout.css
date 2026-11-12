@@ -297,3 +297,26 @@
     display: inline-flex;
   }
 }
+
+/* Onglet Publier mis en avant, au centre de la barre basse. */
+.us-tabbar__item--publish {
+  color: var(--color-green);
+}
+
+.us-tabbar__item--publish .us-tabbar__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-pill);
+  background: var(--color-green);
+  color: var(--color-white);
+}
+
+.us-tabbar__item--publish[aria-current="page"] {
+  background: transparent;
+}
+
+.us-tabbar__item--publish[aria-current="page"] .us-tabbar__icon {
+  box-shadow: 0 0 0 3px var(--color-mint);
+}

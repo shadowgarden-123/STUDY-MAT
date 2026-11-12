@@ -201,12 +201,14 @@ plus grand et en vert :
 L'onglet Messages contient deux parties :
 - « Conversations » : les échanges en cours, avec le nom, l'objet, le
   dernier message et le compteur de non-lus ;
-- « Mes échanges » : la liste des objets promis ou à récupérer, avec
-  trois états simples : à convenir, promis, terminé.
+- « Mes échanges » : la liste des objets en cours, avec deux états :
+  à convenir, terminé. L'état « promis » demanderait de décider à qui
+  l'objet est promis ; il est reporté, pour ne pas ajouter une règle de
+  plus à la première version.
 
-Chaque ligne de « Mes échanges » indique l'objet, la personne, le lieu
-convenu et l'action attendue. C'est là qu'on marque un objet comme
-donné, avec la possibilité d'annuler pendant 10 minutes.
+Chaque ligne de « Mes échanges » indique l'objet, la personne, le rôle
+(tu donnes / tu cherches) et l'action attendue. C'est là qu'on marque un
+objet comme donné ; l'annulation reste possible pendant 10 minutes.
 
 Dans la conversation, un bandeau rappelle l'objet concerné, le lieu de
 remise et l'état. Le bouton « Marquer comme donné » reste accessible
@@ -245,7 +247,28 @@ Objectif : retrouver ce qu'on a fait, et gérer son compte.
 
 
 ---------------------------------------------------------------------
-11. MICRO-COPIE À RETENIR
+11. CE QUI EST EN PLACE
+---------------------------------------------------------------------
+
+- `/` affiche la présentation tant qu'on n'a pas choisi de visiter ;
+  ensuite, et pour les membres, le fil d'annonces.
+- `/annonces` est le fil public : il sert de destination au bouton
+  « Visiter sans compte » et à l'onglet Accueil.
+- Les onglets Tous / Dons / Échanges / Prix lisent et écrivent le
+  paramètre `mode` de l'adresse, et affichent le nombre d'annonces
+  disponibles par mode.
+- La fiche remplace « Contacter » par « Je suis intéressé » ; le message
+  part prérempli.
+- Contacter ou garder une annonce en visite ouvre la feuille d'invitation
+  à créer un compte, avec « Continuer la visite ».
+- La relance après trois fiches s'affiche une seule fois par visite.
+- La publication se fait en deux étapes, avec un indicateur 1 / 2.
+- Messages contient deux vues : Conversations et Mes échanges.
+- La barre basse garde quatre entrées, avec Publier au centre.
+
+
+---------------------------------------------------------------------
+12. MICRO-COPIE À RETENIR
 ---------------------------------------------------------------------
 
 Présentation   « Donner, échanger, partager le matériel du campus. »

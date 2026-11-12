@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigationType, useSearchParams } from "react-router";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -12,18 +12,16 @@ import { firstName } from "@/lib/format";
 import { fr } from "@/i18n/fr";
 import { Icon } from "@/components/icons/Icon";
 import { Logo } from "@/components/icons/Logo";
-import { OpenBagArt } from "@/components/icons/Illustrations";
 import { Button, ButtonLink } from "@/components/ui/UsButton";
 import { Dialog } from "@/components/ui/UsDialog";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ListingCard, ListingGridSkeleton } from "@/components/listings/ListingCard";
-import { ListingPhoto } from "@/components/listings/ListingPhoto";
 import { CategoryChips, FilterAside, ModeChips } from "@/components/listings/FilterBar";
+import { FeedTabs, type ModeCounts } from "@/components/listings/FeedTabs";
 import { HomeBellButton } from "@/components/layout/TopNav";
 import type { ListingSummary } from "@/types/listing";
 
 const PAGE_SIZE = 12;
-const TRUST_ICONS = ["shield", "hand", "info"] as const;
 const CAMPAIGN_KEY = "univ-share:campaign-dismissed";
 const SCROLL_KEY = "univ-share:home-scroll";
 
@@ -75,20 +73,19 @@ export default function Home() {
   const debounced = useDebounce(search, 300);
   const filterKey = `${q}::${category ?? ""}::${mode ?? ""}`;
   const [pageState, setPageState] = useState({ key: filterKey, count: PAGE_SIZE });
-  const visible =
-    pageState.key === filterKey ? pageState.count : PAGE_SIZE;
+  const visible = pageState.key === filterKey ? pageState.count : PAGE_SIZE;
   const [alertsOpen, setAlertsOpen] = useState(false);
   const [dismissed, setDismissed] = useState<string | null>(() =>
     readDismissedCampaign(),
   );
-  const campaign = useMemo(() => activeCampaign(), []);
+  const campaign = activeCampaign();
   const searchRef = useRef<HTMLInputElement>(null);
 
   useDocumentMeta({
     title: "Univ-Share — donner, échanger, partager le matériel du campus",
     description:
       "Livres, cours, composants électroniques et matériel de labo entre étudiants. Trouve ou donne un objet utile en moins d'une minute.",
-    path: "/",
+    path: "/annonces",
   });
 
   useRestoreScroll();
@@ -113,6 +110,7 @@ export default function Home() {
     limit: 96,
     offset: 0,
   });
+  const counts = useQuery(api.listings.modeCounts) as ModeCounts | undefined;
 
   const updateParam = (key: "cat" | "mode", value: string | null) => {
     const next = new URLSearchParams(params);
@@ -134,7 +132,6 @@ export default function Home() {
   const items = (results?.items ?? []) as ListingSummary[];
   const total = results?.total ?? 0;
   const shown = items.slice(0, visible);
-  const boardItems = items.slice(0, 2);
   const hasFilters = Boolean(q || category || mode);
   const showCampaign =
     !isAuthenticated && campaign !== null && dismissed !== campaign.id;
@@ -143,7 +140,7 @@ export default function Home() {
     <>
       <div className="us-container">
         <div className="us-mobile-head">
-          <Logo href="/" />
+          <Logo href="/annonces" />
           <HomeBellButton onClick={() => setAlertsOpen(true)} />
         </div>
       </div>
@@ -175,7 +172,7 @@ export default function Home() {
         </div>
       ) : null}
 
-      <section className={`hero${isAuthenticated ? " hero--compact" : ""}`}>
+      <section className="hero hero--compact">
         <div className="us-container hero__inner">
           <div className="hero__copy">
             {isAuthenticated && profile?.displayName ? (
@@ -188,7 +185,6 @@ export default function Home() {
             <h1 className="hero__title">
               {isAuthenticated ? fr.home.compactTitle : fr.home.title}
             </h1>
-            {!isAuthenticated ? <p className="hero__lead">{fr.home.lead}</p> : null}
 
             <form
               className="us-search hero__search"
@@ -233,66 +229,14 @@ export default function Home() {
             </form>
 
             {!isAuthenticated ? (
-              <div className="hero__chips">
-                <span className="hero__chips-label">{fr.home.quickLabel}</span>
-                {CATEGORIES.map((item) => (
-                  <Link
-                    key={item}
-                    className="hero__chip"
-                    to={`/?cat=${item}${q ? `&q=${encodeURIComponent(q)}` : ""}`}
-                  >
-                    {fr.categoryShort[item]}
-                  </Link>
-                ))}
-              </div>
+              <p className="us-caption home__guest-note">
+                {fr.journey.nudge.title}{" "}
+                <Link className="us-link" to="/inscription">
+                  {fr.journey.nudge.action}
+                </Link>
+              </p>
             ) : null}
           </div>
-
-          {!isAuthenticated ? (
-            <aside className="hero-board" aria-label={fr.home.boardLabel}>
-              <div className="hero-board__head">
-                <span className="hero-board__label">{fr.home.boardLabel}</span>
-                <Icon name="sparkle" size={18} />
-              </div>
-              <OpenBagArt className="hero-board__art" />
-              <div className="hero-board__cards">
-                {boardItems.length > 0 ? (
-                  boardItems.map((listing) => (
-                    <Link
-                      key={listing._id}
-                      to={`/annonce/${listing._id}`}
-                      className="hero-board__card"
-                    >
-                      <span className="hero-board__card-thumb">
-                        <ListingPhoto
-                          photoUrl={listing.photoUrl}
-                          category={listing.category}
-                          alt=""
-                          variant="thumb"
-                        />
-                      </span>
-                      <span>
-                        <span className="hero-board__card-title">
-                          {listing.title}
-                        </span>
-                        <span className="hero-board__card-meta">
-                          {listing.location} · {fr.modes[listing.mode]}
-                        </span>
-                      </span>
-                    </Link>
-                  ))
-                ) : (
-                  <p className="us-caption">
-                    Les premières annonces du campus arrivent ici.
-                  </p>
-                )}
-              </div>
-              <p className="hero-board__quote">
-                {fr.home.boardQuote}
-                <span>{fr.home.boardAuthor}</span>
-              </p>
-            </aside>
-          ) : null}
         </div>
       </section>
 
@@ -302,9 +246,7 @@ export default function Home() {
             <FilterAside
               category={category}
               mode={mode}
-              onChangeCategory={(value) =>
-                updateParam("cat", value ?? null)
-              }
+              onChangeCategory={(value) => updateParam("cat", value ?? null)}
               onChangeMode={(value) => updateParam("mode", value ?? null)}
             />
           </aside>
@@ -315,11 +257,15 @@ export default function Home() {
                 {fr.home.recent}
               </h2>
               {results ? (
-                <span className="feed__count">
-                  {fr.home.resultCount(total)}
-                </span>
+                <span className="feed__count">{fr.home.resultCount(total)}</span>
               ) : null}
             </div>
+
+            <FeedTabs
+              value={mode}
+              counts={counts}
+              onChange={(value) => updateParam("mode", value)}
+            />
 
             <div className="feed__filters">
               <CategoryChips
@@ -386,67 +332,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {!isAuthenticated ? (
-        <>
-          <section className="steps-band" aria-labelledby="etapes">
-            <div className="us-container">
-              <div className="steps-band__head">
-                <h2 id="etapes">{fr.home.stepsTitle}</h2>
-                <p className="us-muted">{fr.home.stepsLead}</p>
-              </div>
-              <ol className="steps-band__grid">
-                {fr.home.steps.map((step, index) => (
-                  <li className="step" key={step.title}>
-                    <span className="step__num" aria-hidden="true">
-                      0{index + 1}
-                    </span>
-                    <div>
-                      <p className="step__title">{step.title}</p>
-                      <p className="step__text">{step.text}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </section>
-
-          <div className="us-container">
-            <div className="cta-band">
-              <div className="us-stack">
-                <h2>{fr.home.ctaTitle}</h2>
-                <p>{fr.home.ctaText}</p>
-                <div className="cta-band__actions">
-                  <ButtonLink to="/publier" variant="secondary" icon="plus">
-                    {fr.actions.publish}
-                  </ButtonLink>
-                  <ButtonLink to="/comment-ca-marche" variant="ghost">
-                    {fr.nav.howItWorks}
-                  </ButtonLink>
-                </div>
-              </div>
-              <OpenBagArt className="cta-band__art" />
-            </div>
-
-            <div className="trust-band">
-              {fr.home.trust.map((item, index) => (
-                <div className="trust-band__item" key={item.title}>
-                  <span className="trust-band__icon">
-                    <Icon
-                      name={TRUST_ICONS[index] ?? "info"}
-                      size={20}
-                    />
-                  </span>
-                  <div>
-                    <p className="trust-band__title">{item.title}</p>
-                    <p className="trust-band__text">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </>
-      ) : null}
 
       <Dialog
         open={alertsOpen}

@@ -6,15 +6,21 @@ import { ButtonLink } from "@/components/ui/UsButton";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Segmented } from "@/components/ui/Segmented";
 import { ConversationList } from "@/components/chat/ConversationList";
+import { ExchangeList, type ExchangeItem } from "@/components/chat/ExchangeList";
 import { ListingGridSkeleton } from "@/components/listings/ListingCard";
 import type { ConversationListItem } from "@/types/listing";
 
 type Scope = "tout" | "je-donne" | "je-cherche";
+type View = "conversations" | "echanges";
 
 export default function Messages() {
+  const [view, setView] = useState<View>("conversations");
   const [scope, setScope] = useState<Scope>("tout");
   const items = useQuery(api.conversations.list, { scope }) as
     | ConversationListItem[]
+    | undefined;
+  const exchanges = useQuery(api.conversations.exchanges) as
+    | ExchangeItem[]
     | undefined;
 
   return (
@@ -26,38 +32,64 @@ export default function Messages() {
         </div>
 
         <Segmented
-          label="Filtrer les échanges"
-          value={scope}
-          onChange={setScope}
+          label="Choisir la vue"
+          value={view}
+          onChange={setView}
           options={[
-            { value: "tout", label: fr.messages.filterAll },
-            { value: "je-donne", label: fr.messages.filterGiving },
-            { value: "je-cherche", label: fr.messages.filterAsking },
+            { value: "conversations", label: fr.journey.exchanges.tabConversations },
+            { value: "echanges", label: fr.journey.exchanges.tabExchanges },
           ]}
         />
 
-        {items === undefined ? (
+        {view === "conversations" ? (
+          <>
+            <Segmented
+              label="Filtrer les échanges"
+              value={scope}
+              onChange={setScope}
+              options={[
+                { value: "tout", label: fr.messages.filterAll },
+                { value: "je-donne", label: fr.messages.filterGiving },
+                { value: "je-cherche", label: fr.messages.filterAsking },
+              ]}
+            />
+
+            {items === undefined ? (
+              <ListingGridSkeleton count={3} />
+            ) : items.length === 0 ? (
+              <EmptyState
+                title={
+                  scope === "tout"
+                    ? fr.messages.emptyTitle
+                    : fr.messages.emptyFilterTitle
+                }
+                text={
+                  scope === "tout"
+                    ? fr.messages.emptyText
+                    : fr.messages.emptyFilterText
+                }
+                action={
+                  scope === "tout" ? (
+                    <ButtonLink to="/annonces">{fr.messages.emptyAction}</ButtonLink>
+                  ) : undefined
+                }
+              />
+            ) : (
+              <ConversationList items={items} />
+            )}
+          </>
+        ) : exchanges === undefined ? (
           <ListingGridSkeleton count={3} />
-        ) : items.length === 0 ? (
+        ) : exchanges.length === 0 ? (
           <EmptyState
-            title={
-              scope === "tout"
-                ? fr.messages.emptyTitle
-                : fr.messages.emptyFilterTitle
-            }
-            text={
-              scope === "tout"
-                ? fr.messages.emptyText
-                : fr.messages.emptyFilterText
-            }
+            title={fr.journey.exchanges.empty}
+            text={fr.journey.exchanges.emptyText}
             action={
-              scope === "tout" ? (
-                <ButtonLink to="/">{fr.messages.emptyAction}</ButtonLink>
-              ) : undefined
+              <ButtonLink to="/annonces">{fr.messages.emptyAction}</ButtonLink>
             }
           />
         ) : (
-          <ConversationList items={items} />
+          <ExchangeList items={exchanges} />
         )}
       </div>
     </div>

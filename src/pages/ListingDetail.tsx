@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -6,7 +6,7 @@ import type { Id } from "@/convex/_generated/dataModel";
 import { useSession } from "@/auth/AuthContext";
 import { useAnalytics } from "@/lib/analytics";
 import { toAppError } from "@/lib/errors";
-import { formatLongDate, formatPrice, formatRelativeDate, firstName } from "@/lib/format";
+import { formatLongDate, formatPrice, formatRelativeDate } from "@/lib/format";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { fr } from "@/i18n/fr";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -18,6 +18,13 @@ import { ListingGridSkeleton } from "@/components/listings/ListingCard";
 import { ListingPhoto } from "@/components/listings/ListingPhoto";
 import { CategoryPill, ModePill } from "@/components/ui/Pills";
 import { useToast } from "@/components/ui/Toast";
+import { GuestGate } from "@/components/auth/GuestGate";
+import {
+  dismissNudge,
+  isNudging,
+  subscribeNudge,
+  trackListingVisit,
+} from "@/lib/visit";
 import { Icon } from "@/components/icons/Icon";
 import type { ListingDetail as ListingDetailType } from "@/types/listing";
 
@@ -58,6 +65,8 @@ export default function ListingDetail() {
   const [bouncing, setBouncing] = useState(false);
   const bounceTimer = useRef<number | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
+  const [gateOpen, setGateOpen] = useState(false);
+  const nudge = useSyncExternalStore(subscribeNudge, isNudging, () => false);
   const [message, setMessage] = useState("");
   const [contactError, setContactError] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
@@ -72,6 +81,11 @@ export default function ListingDetail() {
   useEffect(() => {
     if (listing?._id) track("view_listing", { value: listing._id });
   }, [listing?._id, track]);
+
+  useEffect(() => {
+    if (!listing?._id || isAuthenticated) return;
+    trackListingVisit(listing._id);
+  }, [listing?._id, isAuthenticated]);
 
   const jsonLd = useMemo(() => {
     if (!listing) return null;
@@ -107,13 +121,9 @@ export default function ListingDetail() {
     jsonLd,
   });
 
-  const loginHref = `/connexion?returnTo=${encodeURIComponent(
-    `/annonce/${id ?? ""}`,
-  )}`;
-
   const handleFavorite = async () => {
     if (!isAuthenticated) {
-      navigate(loginHref);
+      setGateOpen(true);
       return;
     }
     if (!listing) return;
@@ -133,13 +143,11 @@ export default function ListingDetail() {
   const openContact = () => {
     if (!listing) return;
     if (!isAuthenticated) {
-      navigate(loginHref);
+      setGateOpen(true);
       return;
     }
     track("click_contact", { value: listing._id });
-    setMessage(
-      `Bonjour, ton annonce « ${listing.title} » est toujours disponible ?`,
-    );
+    setMessage(`Bonjour, ton ${listing.title} est toujours disponible ?`);
     setContactError(null);
     setContactOpen(true);
   };
@@ -245,9 +253,6 @@ export default function ListingDetail() {
     );
   }
 
-  const ownerFirstName = firstName(
-    listing.owner?.displayName ?? fr.common.student,
-  );
   const isGiven = listing.status === "donne";
   const canContact = !listing.isOwner && !isGiven;
 
@@ -381,15 +386,29 @@ export default function ListingDetail() {
             </div>
           ) : null}
 
-          {!isAuthenticated && !listing.isOwner ? (
-            <div className="us-banner">
+          {!isAuthenticated && !listing.isOwner && nudge ? (
+            <div className="us-banner us-banner--yellow" role="status">
               <Icon name="info" size={20} />
               <div className="us-banner__body">
-                <p className="us-banner__title">{fr.listing.guestTitle}</p>
-                <p>{fr.listing.guestText}</p>
-                <Link to={loginHref} className="us-link">
-                  {fr.actions.login}
-                </Link>
+                <p className="us-banner__title">{fr.journey.nudge.title}</p>
+                <p>{fr.journey.nudge.text}</p>
+                <div className="us-cluster" style={{ marginTop: 8 }}>
+                  <Link
+                    className="us-link"
+                    to={`/inscription?returnTo=${encodeURIComponent(
+                      `/annonce/${listing._id}`,
+                    )}`}
+                  >
+                    {fr.journey.nudge.action}
+                  </Link>
+                  <button
+                    type="button"
+                    className="us-btn us-btn--ghost us-btn--small"
+                    onClick={dismissNudge}
+                  >
+                    {fr.journey.nudge.later}
+                  </button>
+                </div>
               </div>
             </div>
           ) : null}
@@ -420,7 +439,7 @@ export default function ListingDetail() {
               >
                 <Icon name="message" size={20} />
                 {canContact
-                  ? fr.actions.contact(ownerFirstName)
+                  ? fr.journey.interested
                   : fr.listing.givenContactDisabled}
               </Button>
               <Button
@@ -443,6 +462,9 @@ export default function ListingDetail() {
         title={fr.listing.contactTitle}
       >
         <p className="us-caption">{fr.listing.contactIntro(listing.title)}</p>
+        <p className="us-caption" style={{ marginTop: 4 }}>
+          {fr.journey.interestedNote}
+        </p>
         <div className="us-field" style={{ marginTop: 16 }}>
           <label className="us-field__label" htmlFor="contact-message">
             {fr.listing.contactLabel}
@@ -476,6 +498,8 @@ export default function ListingDetail() {
           </Button>
         </div>
       </Dialog>
+
+      <GuestGate open={gateOpen} onClose={() => setGateOpen(false)} />
 
       <Dialog
         open={deleteOpen}

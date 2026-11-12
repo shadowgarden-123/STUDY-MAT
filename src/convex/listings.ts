@@ -367,3 +367,23 @@ export const report = mutation({
   },
 });
 
+/** Nombre d'annonces disponibles par mode, pour les onglets du fil. */
+export const modeCounts = query({
+  args: {},
+  handler: async (ctx) => {
+    const available = await ctx.db
+      .query("listings")
+      .withIndex("by_status_created", (q) => q.eq("status", "disponible"))
+      .take(MAX_SCANNED_LISTINGS);
+
+    const counts: Record<"don" | "echange" | "prix", number> = {
+      don: 0,
+      echange: 0,
+      prix: 0,
+    };
+    for (const listing of available) counts[listing.mode] += 1;
+
+    return { ...counts, total: available.length };
+  },
+});
+

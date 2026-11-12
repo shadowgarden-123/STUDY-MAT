@@ -10,13 +10,14 @@ type Tab = {
   icon: IconName;
   end?: boolean;
   unread?: boolean;
+  primary?: boolean;
 };
 
 export function TabBar() {
   const unread = useQuery(api.conversations.unreadCount) ?? 0;
   const tabs: Tab[] = [
-    { to: "/", label: fr.nav.home, icon: "home", end: true },
-    { to: "/publier", label: fr.nav.publish, icon: "plus" },
+    { to: "/annonces", label: fr.nav.home, icon: "home" },
+    { to: "/publier", label: fr.nav.publish, icon: "plus", primary: true },
     { to: "/messages", label: fr.nav.messages, icon: "message", unread: true },
     { to: "/profil", label: fr.nav.profile, icon: "user" },
   ];
@@ -28,7 +29,12 @@ export function TabBar() {
           key={tab.to}
           to={tab.to}
           end={tab.end}
-          className="us-tabbar__item"
+          className={[
+            "us-tabbar__item",
+            tab.primary ? "us-tabbar__item--publish" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
         >
           <span className="us-tabbar__icon">
             <Icon name={tab.icon} size={24} />

@@ -23,13 +23,15 @@ import {
 } from "react-router";
 import { VlyToolbar } from "../vly-toolbar-readonly.tsx";
 
-import { AuthProvider } from "@/auth/AuthContext";
+import { AuthProvider, useSession } from "@/auth/AuthContext";
 import { RequireAuth } from "@/auth/RequireAuth";
+import { hasChosenVisit } from "@/lib/visit";
 import { Layout } from "@/components/layout/Layout";
 import { Logo } from "@/components/icons/Logo";
 import { ToastProvider } from "@/components/ui/Toast";
 
 const Home = lazy(() => import("@/pages/Home"));
+const Welcome = lazy(() => import("@/pages/Welcome"));
 const ListingDetail = lazy(() => import("@/pages/ListingDetail"));
 const Publish = lazy(() => import("@/pages/Publish"));
 const Messages = lazy(() => import("@/pages/Messages"));
@@ -43,6 +45,18 @@ const Styleguide = lazy(() => import("@/pages/Styleguide"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+
+/**
+ * Entrée du site : la présentation pour une personne non connectée,
+ * le fil pour les membres et pour celles et ceux qui visitent sans compte.
+ */
+function Entry() {
+  const { isLoading, isAuthenticated } = useSession();
+
+  if (isLoading) return <RouteLoading />;
+  if (!isAuthenticated && !hasChosenVisit()) return <Welcome />;
+  return <Home />;
+}
 
 function RouteLoading() {
   return (
@@ -159,7 +173,8 @@ createRoot(document.getElementById("root")!).render(
               <Suspense fallback={<RouteLoading />}>
                 <Routes>
                   <Route element={<Layout />}>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Entry />} />
+                    <Route path="/annonces" element={<Home />} />
                     <Route path="/annonce/:id" element={<ListingDetail />} />
                     <Route
                       path="/publier"

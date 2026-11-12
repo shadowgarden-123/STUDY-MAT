@@ -1868,3 +1868,242 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* --- Présentation (entrée du site) --- */
+.welcome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 46rem;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-7);
+}
+
+.welcome__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.welcome__title {
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.welcome__lead {
+  max-width: 34rem;
+  color: var(--color-text-soft);
+  font-size: 1.0625rem;
+}
+
+.welcome__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.welcome__note {
+  margin-top: var(--space-1);
+}
+
+.welcome__proofs {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.welcome__proof {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-white);
+  border-radius: var(--radius-l);
+}
+
+.welcome__proof-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background: var(--color-mint);
+  color: var(--color-green);
+}
+
+.welcome__proof-title {
+  font-weight: 700;
+}
+
+.welcome__proof-text {
+  color: var(--color-text-soft);
+  font-size: var(--text-caption);
+}
+
+.home__guest-note {
+  margin-top: var(--space-2);
+}
+
+/* --- Onglets Tous / Dons / Échanges / Prix --- */
+.feed-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: var(--space-3);
+  padding: 4px;
+  overflow-x: auto;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+}
+
+.feed-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.feed-tabs__tab[aria-pressed="true"] {
+  background: var(--color-green);
+  color: var(--color-white);
+}
+
+.feed-tabs__count {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+/* --- Mes échanges --- */
+.exchanges {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exchanges__item {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-white);
+  border-radius: var(--radius-l);
+}
+
+.exchanges__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.exchanges__state--a-convenir {
+  background: var(--color-mint);
+  color: var(--color-green);
+}
+
+.exchanges__state--termine {
+  background: var(--color-bg);
+  color: var(--color-muted);
+}
+
+.exchanges__title {
+  color: var(--color-ink);
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.exchanges__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exchanges__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+/* --- Invitation à créer un compte --- */
+.gate__perks {
+  display: grid;
+  gap: var(--space-1);
+  margin: var(--space-3) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gate__perks li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-ink);
+  font-size: var(--text-caption);
+  font-weight: 700;
+}
+
+.gate__perks svg {
+  color: var(--color-green);
+}
+
+/* --- Publication en deux étapes --- */
+.publish__steps {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 14rem;
+  margin-bottom: var(--space-1);
+}
+
+.publish__steps > span:not(.publish__steps-line) {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-line);
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.publish__steps .is-current {
+  border-color: var(--color-green);
+  background: var(--color-green);
+  color: var(--color-white);
+}
+
+.publish__steps .is-done {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+.publish__steps-line {
+  flex: 1;
+  height: 2px;
+  background: var(--color-line);
+}
+
+.publish__step-label {
+  margin-bottom: var(--space-3);
+}
+
+.publish__photo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}

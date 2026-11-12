@@ -427,3 +427,56 @@ export const unmarkGiven = mutation({
     return null;
   },
 });
+
+/**
+ * Objets en cours d'échange, vus de l'utilisateur connecté : ce qu'il donne
+ * et ce qu'il cherche. L'état se déduit du statut de l'annonce.
+ */
+export const exchanges = query({
+  args: {},
+  handler: async (ctx) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return [];
+
+    const asRequester = await ctx.db
+      .query("conversations")
+      .withIndex("by_requester", (q) => q.eq("requesterId", userId))
+      .collect();
+    const asOwner = await ctx.db
+      .query("conversations")
+      .withIndex("by_owner", (q) => q.eq("ownerId", userId))
+      .collect();
+
+    const merged = [...asRequester, ...asOwner].sort(
+      (a, b) => b.updatedAt - a.updatedAt,
+    );
+
+    const items = [];
+    const seen = new Set<string>();
+    for (const conversation of merged) {
+      if (seen.has(conversation._id)) continue;
+      seen.add(conversation._id);
+
+      const listing = await ctx.db.get(conversation.listingId);
+      if (!listing) continue;
+
+      const otherId =
+        conversation.requesterId === userId
+          ? conversation.ownerId
+          : conversation.requesterId;
+      const other = await participantSummary(ctx, otherId);
+      const isOwner = conversation.ownerId === userId;
+
+      items.push({
+        conversationId: conversation._id,
+        listing: await listingSummary(ctx, listing),
+        other,
+        role: isOwner ? ("proprietaire" as const) : ("demandeur" as const),
+        state: listing.status === "donne" ? ("termine" as const) : ("a-convenir" as const),
+        updatedAt: conversation.updatedAt,
+      });
+    }
+
+    return items;
+  },
+});
