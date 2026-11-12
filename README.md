@@ -13,6 +13,10 @@ Projet MIAGE L2 - Infographie & Web design.
 
 https://site-d7de1872e7c0463d9dfe600ec86463a8.freebuff.page
 
+C'est la seule adresse à jour du projet. L'ancienne adresse
+`univshare.freebuff.app` pointe vers un premier hébergement qui n'est plus
+nourri.
+
 ## Fonctionnalités
 
 - Liste des annonces avec recherche (les accents ne gênent pas) et filtres par
@@ -40,8 +44,13 @@ bun run dev
 
 Les variables d'environnement se créent à partir du fichier `.env.example`.
 
-Autres commandes : `bun run build`, `bun run test`, `bun run lint`,
-`bun run audit:ui`.
+Autres commandes : `bun run build`, `bun run check` (types, lint et tests),
+`bun run test`, `bun run lint`, `bun run og` (régénère l'image d'aperçu des
+liens partagés), `bun run audit:ui`.
+
+Les types Convex de `src/convex/_generated` sont versionnés : `convex codegen`
+demande un jeton de déploiement, ils sont donc mis à jour à la main quand le
+schéma change.
 
 ## Organisation du code
 

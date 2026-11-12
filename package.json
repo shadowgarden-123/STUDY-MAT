@@ -14,7 +14,8 @@
     "audit:ui": "node scripts/audit-ui.mjs",
     "seed": "convex run seed:ensure",
     "format": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "og": "node scripts/make-og.mjs"
   },
   "dependencies": {
     "@convex-dev/auth": "^0.0.90",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
@@ -46,6 +48,7 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.1",
     "vite": "^7.2.6",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.0",
+    "wawoff2": "^2.0.1"
   }
 }

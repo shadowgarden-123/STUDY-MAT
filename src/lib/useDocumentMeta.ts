@@ -55,6 +55,10 @@ export function useDocumentMeta({ title, description, path, jsonLd }: MetaOption
       const url = `${window.location.origin}${path}`;
       upsertCanonical(url);
       upsertMeta('meta[property="og:url"]', "property", "og:url", url);
+      // L'image d'aperçu suit l'adresse réellement servie (site publié, aperçu).
+      const image = `${window.location.origin}/og-univ-share.png`;
+      upsertMeta('meta[property="og:image"]', "property", "og:image", image);
+      upsertMeta('meta[name="twitter:image"]', "name", "twitter:image", image);
     }
 
     const scriptId = "univ-share-jsonld";
