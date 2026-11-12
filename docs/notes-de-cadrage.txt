@@ -1,0 +1,336 @@
+=====================================================================
+UNIV-SHARE - NOTES DE CADRAGE
+=====================================================================
+
+Projet      : Univ-Share, plateforme d'entraide entre étudiants
+Cadre       : projet MIAGE L2 - Infographie & Web design
+Équipe      : BEUGRE Adompo Chris Emmanuel
+              KONAN Amenan Aoundjouet Evangeline
+              DOSSO Waïdé
+              YAPO Atse Phalek
+Version     : 1.0
+Date        : .... / .... / ........
+
+
+---------------------------------------------------------------------
+1. PRÉSENTATION
+---------------------------------------------------------------------
+
+Univ-Share permet aux étudiants d'un même campus de donner, d'échanger ou
+de vendre à petit prix le matériel universitaire dont ils ne se servent
+plus : livres, polycopiés et TD, composants électroniques, matériel de
+laboratoire.
+
+Le site est pensé pour le téléphone. On cherche un objet, on regarde la
+fiche, on contacte la personne, tout se fait dans la même application. Les
+annonces sont classées par catégorie et par lieu, et on voit tout de suite
+si un objet est encore disponible ou s'il a déjà été donné.
+
+Phrase de présentation retenue : « Donner, échanger, partager le matériel
+du campus. »
+
+
+---------------------------------------------------------------------
+2. PROBLÈME DE DÉPART
+---------------------------------------------------------------------
+
+Le matériel universitaire sert rarement plus d'un semestre. Après, il reste
+dans un sac. En même temps, d'autres étudiants achètent le même article au
+prix du neuf pour quelques semaines d'utilisation.
+
+Aujourd'hui les échanges se font dans les groupes WhatsApp de la promo, et
+ça pose trois problèmes :
+
+- les messages se perdent, une annonce remonte une fois puis disparaît ;
+- on ne peut pas filtrer par catégorie ni par lieu, il faut tout lire ;
+- personne ne sait si l'objet a déjà été donné, donc on relance pour rien.
+
+Il n'existe pas d'endroit unique, classé et à jour pour ce matériel.
+
+
+---------------------------------------------------------------------
+3. OBJECTIFS
+---------------------------------------------------------------------
+
+Objectif principal : permettre à un étudiant de trouver ou de donner un
+objet utile en moins d'une minute, depuis son téléphone.
+
+Objectifs secondaires :
+
+- rendre les annonces consultables et filtrables, contrairement à un fil de
+  discussion ;
+- éviter les achats inutiles en remettant le matériel en circulation ;
+- limiter les échanges de numéros de téléphone entre inconnus ;
+- garder une trace fiable de ce qui est disponible et de ce qui est donné.
+
+L'objectif de la première version n'est pas d'avoir beaucoup d'utilisateurs,
+mais de vérifier que le parcours fonctionne sur une seule filière avant
+d'élargir.
+
+
+---------------------------------------------------------------------
+4. PUBLIC VISÉ
+---------------------------------------------------------------------
+
+- Étudiants demandeurs, du L1 au M2 : ils cherchent un objet précis pour un
+  TP ou un examen et ne veulent pas l'acheter neuf.
+- Étudiants donneurs, surtout en fin de semestre (L3, M1, M2) : ils vident
+  leur sac et préfèrent que ça serve.
+- Associations de filière et délégués : ils relaient l'information dans les
+  groupes WhatsApp.
+- Filière pilote : MIAGE L2, qui sert de test pour la première mise en ligne.
+
+Le site est en français, on tutoie l'utilisateur, et les prix sont en FCFA.
+
+
+---------------------------------------------------------------------
+5. CE QUE FAIT LA VERSION 1
+---------------------------------------------------------------------
+
+Consultation
+- page d'accueil avec les annonces récentes ;
+- recherche sans tenir compte des accents, avec plusieurs mots ;
+- filtres par catégorie, par mode (don, échange, prix) et par lieu ;
+- les filtres restent dans l'adresse de la page, donc on peut partager un
+  lien déjà filtré ;
+- bouton « voir plus » pour afficher la suite.
+
+Annonce
+- fiche avec photo, titre, description, catégorie, mode, lieu, date ;
+- prix affiché seulement pour les annonces à prix symbolique ;
+- partage sur WhatsApp, ajout aux favoris, signalement ;
+- une annonce donnée reste consultable avec un bandeau « déjà donné ».
+
+Publication
+- photo prise depuis le téléphone, compressée avant l'envoi ;
+- catégorie proposée automatiquement à partir du titre, mais on peut la
+  changer ;
+- trois modes : don, échange (avec ce qu'on recherche), prix symbolique ;
+- brouillon conservé si on quitte la page ;
+- le temps de publication est mesuré pour vérifier l'objectif d'une minute.
+
+Messagerie
+- conversation entre l'auteur de l'annonce et la personne intéressée ;
+- compteur de messages non lus ;
+- bouton « marquer comme donné », avec possibilité d'annuler pendant
+  10 minutes.
+
+Profil
+- mes annonces, mes annonces gardées ;
+- badge « étudiant vérifié » ;
+- lien d'invitation ;
+- suppression du compte.
+
+Pages d'aide
+- Comment ça marche ;
+- Données et confidentialité ;
+- une page de styleguide, accessible seulement en développement, qui sert
+  à montrer les composants pendant la soutenance.
+
+Des données de démonstration sont chargées à la première ouverture pour que
+le site ne soit pas vide : une quinzaine d'annonces et quelques
+conversations.
+
+
+---------------------------------------------------------------------
+6. CE QU'ON NE FAIT PAS
+---------------------------------------------------------------------
+
+Ces éléments ont été écartés volontairement pour tenir le projet :
+
+- notifications par e-mail ou sur le téléphone ;
+- avis et notes entre utilisateurs ;
+- carte du campus ;
+- application installable qui marche hors connexion ;
+- paiement en ligne ;
+- modération automatique ;
+- espace d'administration complet ;
+- affiche imprimable avec QR code.
+
+Ce qui est écarté ne doit pas apparaître dans l'interface sous forme de
+bouton inactif.
+
+
+---------------------------------------------------------------------
+7. CONTRAINTES TECHNIQUES
+---------------------------------------------------------------------
+
+Le projet devait au départ être découpé en deux parties (un serveur et un
+client). L'environnement d'hébergement imposait une autre organisation :
+une seule application avec Vite, React et Convex. On a donc gardé les mêmes
+fonctions, mais autrement :
+
+- les fonctions Convex remplacent les routes d'une API classique ;
+- le stockage de Convex remplace l'enregistrement des photos côté serveur ;
+- la connexion se fait par un code à 6 chiffres envoyé par e-mail, il n'y a
+  pas de mot de passe ;
+- les messages arrivent en temps réel au lieu d'être rechargés toutes les
+  quelques secondes ;
+- le style est écrit à la main en CSS avec des variables, sans framework CSS
+  et sans bibliothèque de composants.
+
+Autres contraintes :
+
+- TypeScript en mode strict ;
+- mobile d'abord, puis tablette et ordinateur (à partir de 768 px) ;
+- accessibilité visée : WCAG 2.2 niveau AA ;
+- cibles tactiles de 44 px minimum ;
+- polices et icônes hébergées avec le site, pas d'appel à un service
+  extérieur.
+
+
+---------------------------------------------------------------------
+8. DONNÉES ENREGISTRÉES
+---------------------------------------------------------------------
+
+utilisateurs : nom affiché, niveau d'études, étudiant vérifié ou non,
+               parrain, compte d'authentification
+annonces     : titre, description, catégorie, mode, prix, échange
+               recherché, lieu, photo, statut, bénéficiaire, date du don,
+               texte de recherche normalisé, durée de publication
+favoris      : utilisateur + annonce
+conversations: les deux participants et l'annonce concernée
+messages     : contenu, auteur, date, et messages système pour les
+               changements de statut
+signalements : motif et annonce visée
+mesures      : événements d'usage (recherche, contact, publication)
+
+Catégories : livres, cours, électronique, laboratoire.
+Modes      : don, échange, prix.
+Statuts    : disponible, donné.
+Lieux      : bâtiment A, B, C, résidence, amphi, bibliothèque, autre.
+
+
+---------------------------------------------------------------------
+9. RÈGLES DE GESTION
+---------------------------------------------------------------------
+
+- Titre entre 3 et 80 caractères, description de 1000 caractères maximum.
+- Catégorie et lieu obligatoires. Mode « don » par défaut.
+- Un prix entier entre 100 et 50 000 FCFA, uniquement en mode prix.
+- Ce qu'on recherche, en mode échange : 120 caractères maximum.
+- Seul l'auteur peut modifier, supprimer ou marquer son annonce comme
+  donnée.
+- Seuls les deux participants d'une conversation peuvent la lire.
+- Une annonce donnée disparaît du fil mais reste accessible par son lien.
+- La recherche ignore les accents et exige tous les mots tapés.
+- Marquer comme donné envoie un message automatique aux personnes qui
+  avaient écrit, et l'action peut être annulée pendant 10 minutes.
+- Les prix s'affichent avec une espace insécable : 500 FCFA, 2 000 FCFA.
+- Les dates sont relatives : à l'instant, il y a 2 h, hier, il y a 3 j,
+  il y a 1 sem., puis la date courte.
+- Aucun numéro de téléphone n'est visible : tout passe par la messagerie.
+
+
+---------------------------------------------------------------------
+10. ÉCRANS
+---------------------------------------------------------------------
+
+/                    accueil et liste des annonces
+/annonce/:id         fiche d'une annonce
+/publier             nouvelle annonce
+/publier/:id         modification
+/messages            liste des conversations
+/messages/:id        une conversation
+/profil              mes annonces et mes favoris
+/connexion           connexion par code
+/inscription         création de compte
+/bienvenue           complétion du profil
+/comment-ca-marche   présentation du fonctionnement
+/confidentialite     données personnelles
+/_styleguide         styleguide, en développement seulement
+
+Sur téléphone, la navigation se fait par une barre en bas avec quatre
+entrées : accueil, publier, messages, profil. À partir de 768 px, la même
+navigation passe en haut de page. Les pages qui demandent un compte
+renvoient vers la connexion, puis reviennent à la page demandée.
+
+
+---------------------------------------------------------------------
+11. IDENTITÉ VISUELLE
+---------------------------------------------------------------------
+
+Vert principal #0F6B4F, jaune #F5B800 pour les prix et le focus, menthe
+#DCEEE4 pour les surfaces, encre #14201B pour le texte, fond #F5F7F2.
+Titres en Bricolage Grotesque 700, texte en Nunito Sans 400 et 700.
+
+Le détail des choix et des raisons est dans docs/choix-graphiques.txt.
+
+
+---------------------------------------------------------------------
+12. PLANNING
+---------------------------------------------------------------------
+
+Développement
+- cadrage, charte et maquettes ;
+- base de données et fonctions serveur ;
+- écrans publics, puis écrans avec compte ;
+- données de démonstration ;
+- vérifications (tests, audit d'affichage, relecture).
+
+Mise en ligne, prévue sur quatre semaines
+- semaine 0 : réunir 30 annonces et les premiers donneurs avant d'en parler
+  largement ;
+- semaine 1 : présentation de 5 minutes en cours de MIAGE L2, groupe
+  WhatsApp de la promo, une affiche dans le hall ;
+- semaine 2 : ouverture aux autres filières et aux associations ;
+- semaine 3 : affiches, flyers et autocollants avec QR code ;
+- semaine 4 : bilan, tests avec cinq étudiants, corrections.
+
+Les chiffres visés (40 annonces avant l'ouverture, 25 % de la promo L2
+inscrite après deux semaines, 15 dons au bout d'un mois) sont des
+hypothèses, pas des engagements. Ils seront revus chaque semaine avec les
+vrais chiffres.
+
+
+---------------------------------------------------------------------
+13. RISQUES
+---------------------------------------------------------------------
+
+1. Le site est vide au lancement et personne ne trouve rien.
+   -> réunir les annonces avant d'en parler.
+
+2. La connexion par code dépend d'une vraie adresse e-mail, donc le parcours
+   avec compte est plus long à tester.
+   -> préparer un compte pour la démonstration et refaire le parcours
+   complet avant la soutenance.
+
+3. Le volume d'annonces dépasse ce que la recherche peut traiter.
+   -> surveiller le nombre d'annonces et passer à un index de recherche
+   dédié si besoin.
+
+4. Photos floues ou trop lourdes.
+   -> compression avant l'envoi et conseils de prise de vue.
+
+5. Annonce abusive ou spam.
+   -> signalement, suppression par l'auteur, traitement manuel.
+
+6. Les chiffres affichés sont trop faibles pour convaincre.
+   -> ne rien afficher en dessous de 20, et communiquer sur les objets
+   plutôt que sur les statistiques.
+
+
+---------------------------------------------------------------------
+14. LIVRABLES
+---------------------------------------------------------------------
+
+- l'application web, avec son code source ;
+- la charte graphique et le styleguide ;
+- cette note de cadrage ;
+- le compte-rendu de la réunion de lancement ;
+- la répartition des tâches ;
+- le jeu de données de démonstration ;
+- les messages de communication pour le lancement.
+
+
+---------------------------------------------------------------------
+15. VALIDATION
+---------------------------------------------------------------------
+
+Nom                      Rôle                     Date        Visa
+
+.......................  Porteur du projet        ..../....   ..........
+
+.......................  Enseignant encadrant     ..../....   ..........
+
+.......................  Référent MIAGE L2        ..../....   ..........
