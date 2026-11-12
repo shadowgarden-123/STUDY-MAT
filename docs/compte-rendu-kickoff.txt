@@ -1,0 +1,176 @@
+=====================================================================
+UNIV-SHARE - COMPTE-RENDU DE LA RÉUNION DE LANCEMENT
+=====================================================================
+
+Réunion     : lancement du projet (kick-off)
+Projet      : Univ-Share
+Date        : .... / .... / ........
+Heure       : .... h .... à .... h ....
+Lieu        : ...........................................
+Rédacteur  : ...........................................
+
+Présents
+- BEUGRE Adompo Chris Emmanuel
+- KONAN Amenan Aoundjouet Evangeline
+- DOSSO Waïdé
+- YAPO Atse Phalek
+
+Absent(s)   : ...........................................
+
+Documents remis avant la réunion : notes de cadrage, maquettes des écrans
+principaux, premières annonces de démonstration.
+
+
+---------------------------------------------------------------------
+1. ORDRE DU JOUR
+---------------------------------------------------------------------
+
+1. Présentation du projet et du problème à résoudre
+2. Public visé et objectifs de la première version
+3. Fonctionnalités retenues, et ce qu'on écarte
+4. Choix techniques
+5. Identité visuelle et ton des textes
+6. Organisation du travail et calendrier
+7. Points à trancher avant de commencer
+
+
+---------------------------------------------------------------------
+2. RAPPEL DU PROJET
+---------------------------------------------------------------------
+
+Le matériel universitaire ne sert souvent qu'un semestre, puis il reste dans
+un sac, alors que d'autres étudiants l'achètent neuf pour quelques semaines.
+Les échanges passent aujourd'hui par les groupes WhatsApp de la promo, où les
+annonces se perdent et où on ne peut ni chercher ni filtrer.
+
+Univ-Share doit régler ça avec un site simple, utilisable sur téléphone, où
+les annonces sont classées, cherchables, et où l'on voit si un objet est
+encore disponible. Le principe retenu : on donne, on échange, ou on vend à
+petit prix. Pas de paiement en ligne, pas d'argent qui circule sur le site.
+
+
+---------------------------------------------------------------------
+3. CE QUI A ÉTÉ DÉCIDÉ
+---------------------------------------------------------------------
+
+Décision 1 - Le site est en français, on tutoie, les prix sont en FCFA, et
+le contact passe uniquement par la messagerie interne. Aucun numéro de
+téléphone n'est affiché.
+
+Décision 2 - Le projet est une seule application web (React + Vite +
+Convex), pas deux projets séparés. C'est l'organisation imposée par
+l'environnement d'hébergement, et elle simplifie le déploiement.
+
+Décision 3 - La connexion se fait par un code à 6 chiffres reçu par e-mail.
+Pas de mot de passe à retenir ni à stocker.
+
+Décision 4 - Le style est écrit à la main en CSS avec des variables. Pas de
+framework CSS, pas de bibliothèque de composants toute faite : on garde la
+main sur le rendu et ça évite un code qu'on ne maîtrise pas.
+
+Décision 5 - Une seule action principale verte par écran, le jaune réservé
+aux prix et au focus clavier. Le reste du détail est dans
+docs/choix-graphiques.txt.
+
+Décision 6 - La première version contient : liste et recherche, fiche
+annonce, publication, messagerie, profil, pages d'aide. Le reste
+(notifications, avis, carte, paiement, modération automatique) est écarté
+et n'apparaîtra pas comme bouton inactif.
+
+Décision 7 - On commence par la filière MIAGE L2. Avant d'en parler
+largement, on réunit une trentaine d'annonces, sinon le site paraît vide et
+les premiers visiteurs ne reviennent pas.
+
+Décision 8 - Les chiffres du plan de lancement sont des objectifs de
+travail, pas des promesses. On les réévalue chaque semaine avec les vrais
+résultats.
+
+Décision 9 - Le site n'affiche pas de statistiques en dessous de 20. On
+préfère ne rien montrer plutôt qu'un chiffre qui fait pitié.
+
+Décision 10 - Avant la soutenance, on refait le parcours complet à deux
+comptes (une personne qui publie, une personne qui contacte) sur un vrai
+téléphone.
+
+
+---------------------------------------------------------------------
+4. RÉPARTITION DU TRAVAIL
+---------------------------------------------------------------------
+
+La répartition est détaillée dans docs/repartition-des-taches.txt. En
+résumé :
+
+- BEUGRE Adompo Chris Emmanuel : base de données, fonctions serveur,
+  authentification, intégration générale.
+- KONAN Amenan Aoundjouet Evangeline : écrans de consultation, publication,
+  navigation.
+- DOSSO Waïdé : maquettes, charte graphique, feuilles de style,
+  accessibilité.
+- YAPO Atse Phalek : messagerie, profil, tests, relecture des textes,
+  communication du lancement.
+
+Les tests d'affichage et la relecture se font à deux, pour ne pas juger son
+propre travail seul.
+
+
+---------------------------------------------------------------------
+5. POINTS RESTÉS OUVERTS
+---------------------------------------------------------------------
+
+- Date exacte du début de la communication dans la filière L2.
+- Faut-il imprimer une affiche avec un QR code, et avec quel budget ?
+- Qui répond aux signalements pendant la phase de test.
+- Faut-il montrer les statistiques aux associations de filière, ou les
+garder pour l'équipe.
+- Date de la répétition générale avant la soutenance.
+
+
+---------------------------------------------------------------------
+6. TÂCHES À FAIRE
+---------------------------------------------------------------------
+
+N°  Tâche                                          Qui          Pour le
+
+1   Relire et corriger la note de cadrage            tous          ..../....
+2   Créer un compte de démonstration et vérifier      Chris         ..../....
+    la connexion par code
+3   Refaire le parcours donneur / demandeur sur       Chris,        ..../....
+    téléphone                                         Phalek
+4   Vérifier l'affichage sur petit et grand écran     Waïdé,        ..../....
+    et le zoom du texte                               Evangeline
+5   Préparer 30 annonces et trouver les premiers     Phalek        ..../....
+    donneurs
+6   Préparer la présentation de 5 minutes pour        Evangeline    ..../....
+    l'amphi
+7   Imprimer l'affiche et préparer le message pour    Phalek        ..../....
+    le groupe WhatsApp L2
+8   Trouver 5 étudiants pour les tests                Waïdé         ..../....
+9   Relire les textes du site (fautes, ton)           tous          ..../....
+10  Corriger les points relevés pendant les tests     selon        ..../....
+                                                      l'écran
+
+
+---------------------------------------------------------------------
+7. PROCHAINE RÉUNION
+---------------------------------------------------------------------
+
+Objet   : point d'avancement avant la mise en ligne dans la filière L2
+Date    : .... / .... / ........  à .... h ....
+Lieu    : ...........................................
+
+Ordre du jour prévu : avancement des tâches ci-dessus, résultats des
+premiers dons, décisions sur les points restés ouverts, réglage du
+calendrier de lancement.
+
+
+---------------------------------------------------------------------
+8. VALIDATION
+---------------------------------------------------------------------
+
+Rédacteur .......................  Date ..../....  Signature ..........
+
+Présent    .......................  Date ..../....  Signature ..........
+
+Présent    .......................  Date ..../....  Signature ..........
+
+Présent    .......................  Date ..../....  Signature ..........
