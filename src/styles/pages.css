@@ -1872,6 +1872,8 @@
 /* --- Page d'accueil publique --- */
 .landing {
   position: relative;
+  /* Les blocs qui arrivent de biais ne doivent pas créer de défilement latéral */
+  overflow-x: clip;
   display: flex;
   flex-direction: column;
   gap: var(--space-7);
