@@ -25,7 +25,6 @@ import { VlyToolbar } from "../vly-toolbar-readonly.tsx";
 
 import { AuthProvider, useSession } from "@/auth/AuthContext";
 import { RequireAuth } from "@/auth/RequireAuth";
-import { hasChosenVisit } from "@/lib/visit";
 import { Layout } from "@/components/layout/Layout";
 import { Logo } from "@/components/icons/Logo";
 import { ToastProvider } from "@/components/ui/Toast";
@@ -47,15 +46,14 @@ const NotFound = lazy(() => import("@/pages/NotFound"));
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
 /**
- * Entrée du site : la présentation pour une personne non connectée,
- * le fil pour les membres et pour celles et ceux qui visitent sans compte.
+ * Entrée du site : la présentation passe avant le fil, pour tout le monde.
+ * Le fil des annonces vit sur /annonces.
  */
 function Entry() {
-  const { isLoading, isAuthenticated } = useSession();
+  const { isLoading } = useSession();
 
   if (isLoading) return <RouteLoading />;
-  if (!isAuthenticated && !hasChosenVisit()) return <Welcome />;
-  return <Home />;
+  return <Welcome />;
 }
 
 function RouteLoading() {

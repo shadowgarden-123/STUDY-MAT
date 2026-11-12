@@ -4,6 +4,7 @@ import { api } from "@/convex/_generated/api";
 import { fr } from "@/i18n/fr";
 import { useDocumentMeta } from "@/lib/useDocumentMeta";
 import { useAnalytics } from "@/lib/analytics";
+import { useSession } from "@/auth/AuthContext";
 import { startVisit } from "@/lib/visit";
 import { formatRelativeDate } from "@/lib/format";
 import { Icon } from "@/components/icons/Icon";
@@ -35,6 +36,7 @@ const FACTS = [
 export default function Welcome() {
   const navigate = useNavigate();
   const track = useAnalytics();
+  const { isAuthenticated } = useSession();
   const listings = useQuery(api.listings.list, { limit: 3 });
 
   useDocumentMeta({
@@ -53,6 +55,27 @@ export default function Welcome() {
   const { welcome } = fr.journey;
   const preview = listings?.items ?? [];
 
+  /* Un membre qui arrive ici veut le fil, pas un formulaire d'inscription. */
+  const actions = isAuthenticated ? (
+    <>
+      <ButtonLink to="/annonces" icon="search">
+        {welcome.browse}
+      </ButtonLink>
+      <ButtonLink to="/publier" variant="secondary" icon="plus">
+        {fr.actions.publish}
+      </ButtonLink>
+    </>
+  ) : (
+    <>
+      <ButtonLink to="/inscription" icon="plus">
+        {welcome.signup}
+      </ButtonLink>
+      <ButtonLink to="/connexion" variant="secondary">
+        {welcome.login}
+      </ButtonLink>
+    </>
+  );
+
   return (
     <div className="us-container landing">
       <section className="landing__hero">
@@ -65,20 +88,18 @@ export default function Welcome() {
             circulation entre étudiants, en don, en échange ou à petit prix.
           </p>
 
-          <div className="landing__actions">
-            <ButtonLink to="/inscription" icon="plus">
-              {welcome.signup}
-            </ButtonLink>
-            <ButtonLink to="/connexion" variant="secondary">
-              {welcome.login}
-            </ButtonLink>
-          </div>
-          <p className="us-caption landing__note">{welcome.note}</p>
+          <div className="landing__actions">{actions}</div>
 
-          <button type="button" className="landing__visit" onClick={visit}>
-            {welcome.visit}
-            <span aria-hidden="true">→</span>
-          </button>
+          {isAuthenticated ? null : (
+            <>
+              <p className="us-caption landing__note">{welcome.note}</p>
+
+              <button type="button" className="landing__visit" onClick={visit}>
+                {welcome.visit}
+                <span aria-hidden="true">→</span>
+              </button>
+            </>
+          )}
         </div>
 
         <aside className="landing__board" aria-label="Le tableau du campus">
@@ -179,18 +200,13 @@ export default function Welcome() {
           besoin cette semaine. Crée ton compte pour publier, ou pour
           contacter les personnes qui donnent.
         </p>
-        <div className="landing__actions">
-          <ButtonLink to="/inscription" icon="plus">
-            {welcome.signup}
-          </ButtonLink>
-          <ButtonLink to="/connexion" variant="secondary">
-            {welcome.login}
-          </ButtonLink>
-        </div>
-        <button type="button" className="landing__visit" onClick={visit}>
-          {welcome.visit}
-          <span aria-hidden="true">→</span>
-        </button>
+        <div className="landing__actions">{actions}</div>
+        {isAuthenticated ? null : (
+          <button type="button" className="landing__visit" onClick={visit}>
+            {welcome.visit}
+            <span aria-hidden="true">→</span>
+          </button>
+        )}
       </section>
     </div>
   );

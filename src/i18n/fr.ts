@@ -507,6 +507,7 @@ export const fr = {
       signup: "Créer un compte",
       login: "J'ai déjà un compte",
       visit: "Visiter sans compte",
+      browse: "Voir les annonces",
       note: "Gratuit, sans mot de passe : un code à 6 chiffres suffit.",
     },
     gate: {
