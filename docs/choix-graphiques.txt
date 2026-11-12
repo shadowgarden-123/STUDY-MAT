@@ -1,0 +1,196 @@
+=====================================================================
+UNIV-SHARE - CHOIX GRAPHIQUES ET JUSTIFICATION
+=====================================================================
+
+Ce document explique les choix de couleurs, de typographie et de mise en
+page, et pourquoi ils ont été faits. Les valeurs sont celles du fichier
+src/styles/tokens.css, qui est le seul endroit où les couleurs sont
+définies.
+
+
+---------------------------------------------------------------------
+1. COULEURS
+---------------------------------------------------------------------
+
+Vert principal : #0F6B4F
+  C'est la couleur des boutons principaux, du logo et des titres forts.
+  On a pris un vert foncé plutôt qu'un bleu : le bleu est la couleur des
+  sites d'entreprise et des banques, ce qui ne correspond pas au projet.
+  Le vert évoque le partage et le recyclage sans tomber dans le cliché du
+  développement durable. Il est assez sombre pour que le texte blanc reste
+  lisible dessus : le blanc sur ce vert donne un contraste de 6,5 pour 1,
+  au-dessus du minimum de 4,5 demandé par les règles d'accessibilité.
+  Variantes : #0A4F3A au survol, #073B2B au clic.
+
+Jaune accent : #F5B800
+  Il sert à deux choses seulement : mettre en avant un prix et entourer
+  l'élément qui a le focus au clavier. On a choisi un jaune chaud, presque
+  moutarde, parce qu'il rappelle les couleurs de prix qu'on voit sur les
+  étiquettes et parce qu'il tranche nettement sur le vert et sur le fond.
+  Le texte encre sur ce jaune donne un contraste de 9,4 pour 1.
+  Il reste volontairement rare : moins de 2 % de la surface d'un écran,
+  sinon il attire l'œil partout et ne veut plus rien dire.
+
+Menthe : #DCEEE4
+  C'est la couleur des surfaces calmes : cartes, panneaux, encadrés,
+  conversation active. C'est un vert très clair, obtenu en désaturant le
+  vert principal, donc les deux vont ensemble sans avoir l'air de sortir de
+  deux palettes différentes. Elle remplace le gris clair habituel, qui
+  rendait les pages un peu tristes.
+
+Encre : #14201B
+  C'est la couleur du texte. Ce n'est pas du noir pur : c'est un vert
+  presque noir, plus doux à lire sur un fond légèrement coloré, et qui
+  s'accorde avec le reste. Le contraste avec le fond donne 15,6 pour 1.
+
+Fond : #F5F7F2
+  Un blanc cassé, très légèrement vert. Le blanc pur fatigue sur les grands
+  écrans et fait ressortir les cartes comme des découpes. Ce fond permet
+  aux cartes blanches de se détacher sans ajouter d'ombre.
+
+Couleurs secondaires
+  Texte secondaire #5B6B63 : pour les dates, les lieux, les légendes.
+    Contraste de 5,2 pour 1 sur le fond, donc encore lisible.
+  Séparateurs #DDE3DF : pour les traits fins, jamais pour du texte.
+  Erreur #B3261E : réservé aux messages d'erreur et aux suppressions.
+    Le blanc dessus donne 6,5 pour 1.
+
+Règle générale : aucune couleur n'est écrite en dur dans une autre
+feuille de style. Tout passe par les variables de tokens.css, ce qui a
+permis de corriger les contrastes d'un coup sans reprendre chaque écran.
+
+
+---------------------------------------------------------------------
+2. TYPOGRAPHIE
+---------------------------------------------------------------------
+
+Titres : Bricolage Grotesque, graisse 700
+  Une police avec un peu de caractère, arrondie par endroits, qui donne un
+  ton moins scolaire qu'une police système. Elle reste très lisible en
+  grand. On l'utilise uniquement pour les titres, jamais pour du texte
+  long.
+
+Texte : Nunito Sans, graisses 400 et 700
+  Une police sans empattement, dessinée pour les écrans, avec des lettres
+  assez larges. Elle reste confortable sur un téléphone et ne demande pas
+  de zoom.
+
+Tailles
+  32 px pour le titre principal d'une page ;
+  20 px pour les sous-titres ;
+  16 px pour le texte courant ;
+  13 px pour les légendes et les dates.
+
+Deux graisses au maximum par police. On a évité d'empiler quatre ou cinq
+graisses différentes, ce qui alourdit une page sans rien apporter.
+
+Les deux polices sont hébergées avec le site, en fichiers, pour que
+l'affichage ne dépende pas d'un service extérieur et que la page ne saute
+pas pendant le chargement.
+
+
+---------------------------------------------------------------------
+3. FORMES ET ESPACEMENTS
+---------------------------------------------------------------------
+
+Arrondis : 8 px pour les petits éléments, 12 px pour les champs et les
+boutons, 16 px pour les cartes, et une forme pilule pour les étiquettes de
+filtre. Des arrondis cohérents rendent l'interface plus douce sans avoir à
+ajouter de décorations.
+
+Espacements : une échelle de 4, 8, 12, 16, 24, 32 et 48 px. Toutes les
+marges viennent de cette échelle, ce qui évite les valeurs au hasard et
+garde un rythme régulier d'un écran à l'autre.
+
+Hauteur des boutons et des zones cliquables : 44 px minimum, parce qu'en
+dessous on rate sa cible avec le pouce.
+
+Mouvement : 120 ms pour les petits changements d'état, 200 ms pour les
+ouvertures de panneau, avec une courbe qui ralentit à la fin. Rien de plus,
+aucune animation décorative.
+
+Largeur de lecture : le texte des pages d'aide est limité à environ
+70 caractères par ligne, au-delà on perd le fil en passant à la ligne
+suivante.
+
+
+---------------------------------------------------------------------
+4. LOGO
+---------------------------------------------------------------------
+
+Le symbole est un cercle formé de deux flèches qui se répondent, avec un
+point jaune au centre. Les deux flèches représentent le donnant et le
+recevant, et le point jaune représente l'objet qui circule. Le tout tient
+dans un carré arrondi vert avec des flèches blanches, pour rester lisible
+en petite taille, y compris comme icône sur un téléphone.
+
+Règles : ne pas déformer, ne pas ajouter d'ombre, ne pas poser le logo sur
+une photo chargée, ne pas changer la couleur des flèches. La marge autour
+doit au moins valoir la hauteur du point jaune.
+
+Le nom s'écrit toujours « Univ-Share », avec le trait d'union et les deux
+majuscules.
+
+
+---------------------------------------------------------------------
+5. ICÔNES ET ILLUSTRATIONS
+---------------------------------------------------------------------
+
+Les icônes sont dessinées à la main en SVG, sur une grille de 24 px, avec
+un trait régulier. On a préféré ça à une bibliothèque d'icônes toute faite
+pour garder le même style partout et n'embarquer que les icônes utilisées.
+
+Cinq illustrations à aplats (livre, carte électronique, polycopié, blouse,
+sac ouvert) servent quand une annonce n'a pas de photo et pour l'écran
+vide. Elles sont volontairement simples : quelques formes, trois couleurs,
+pas de détail inutile.
+
+Une icône est toujours accompagnée de son texte dans la navigation. On ne
+demande jamais à l'utilisateur de deviner ce que veut dire un dessin.
+
+
+---------------------------------------------------------------------
+6. CE QU'ON A ÉVITÉ
+---------------------------------------------------------------------
+
+- Les dégradés : ils datent un peu et rendent les captures d'écran
+  illisibles quand on les imprime.
+- Les emojis dans l'interface : ils changent d'apparence selon le
+  téléphone et donnent un ton moins sérieux au site.
+- Les ombres portées partout : on en garde une seule, très légère, pour les
+  éléments qui flottent vraiment au-dessus de la page.
+- Les photos de banque d'images : elles ne correspondent jamais au campus
+  et se reconnaissent tout de suite. On préfère les photos des vrais objets
+  et les illustrations maison.
+- Une bibliothèque de composants : elle aurait imposé son style et son
+  vocabulaire, alors qu'on voulait un rendu simple et qu'on puisse
+  expliquer chaque partie.
+- Le texte gris clair : joli sur une maquette, illisible en plein soleil
+  sur un téléphone.
+
+
+---------------------------------------------------------------------
+7. TON DES TEXTES
+---------------------------------------------------------------------
+
+On tutoie, on fait des phrases courtes, et on écrit ce qui se passe plutôt
+que des messages techniques.
+
+  « Ton annonce est en ligne. »
+  et non « Félicitations, votre publication a été créée avec succès ! »
+
+  « Cet objet a déjà été donné. »
+  et non « Cette annonce n'est plus disponible. »
+
+  « Le prix doit être entre 100 et 50 000 FCFA. »
+  et non « Erreur de validation du champ. »
+
+  « Rien pour le moment dans cette catégorie. Sois le premier à donner ! »
+  et non « Aucun résultat. »
+
+Sur les boutons, on met un verbe et un objet : « Contacter Yao »,
+« Marquer comme donné », « Publier mon annonce ». Éviter « Valider » ou
+« Soumettre », qui ne disent pas ce qui va se passer.
+
+Quand il y a une erreur, on dit ce qui s'est passé et comment s'en sortir.
+On ne rejette jamais la faute sur l'utilisateur.
