@@ -74,8 +74,8 @@ export function TopNav() {
               <Link to="/connexion" className="us-topnav__link">
                 {fr.actions.login}
               </Link>
-              <ButtonLink to="/publier" icon="plus">
-                {fr.actions.publish}
+              <ButtonLink to="/inscription" icon="plus">
+                {fr.journey.welcome.signup}
               </ButtonLink>
             </>
           )}
