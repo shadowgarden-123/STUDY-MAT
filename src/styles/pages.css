@@ -2201,6 +2201,126 @@
   margin-top: var(--space-1);
 }
 
+/* Mouvement : une seule séquence d'arrivée, puis des réponses au survol */
+@keyframes landing-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.3) rotate(-6deg);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(0.96) rotate(1.5deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing__intro > * {
+    animation: landing-rise var(--dur-enter) var(--ease-out) both;
+  }
+
+  .landing__intro > *:nth-child(1) {
+    animation-delay: 40ms;
+  }
+
+  .landing__intro > *:nth-child(2) {
+    animation-delay: 90ms;
+  }
+
+  .landing__intro > *:nth-child(3) {
+    animation-delay: 150ms;
+  }
+
+  .landing__intro > *:nth-child(4) {
+    animation-delay: 220ms;
+  }
+
+  .landing__intro > *:nth-child(5) {
+    animation-delay: 270ms;
+  }
+
+  .landing__intro > *:nth-child(6) {
+    animation-delay: 310ms;
+  }
+
+  .landing__board {
+    animation: landing-rise var(--dur-enter) var(--ease-out) 200ms both;
+  }
+
+  .landing__board-item {
+    animation: landing-rise var(--dur-enter) var(--ease-out) both;
+  }
+
+  .landing__board-item:nth-child(1) {
+    animation-delay: 320ms;
+  }
+
+  .landing__board-item:nth-child(2) {
+    animation-delay: 380ms;
+  }
+
+  .landing__board-item:nth-child(3) {
+    animation-delay: 440ms;
+  }
+
+  .landing__board-item .us-pill {
+    animation: landing-stamp var(--dur-stamp) var(--ease-out) both;
+  }
+
+  .landing__board-item:nth-child(1) .us-pill {
+    animation-delay: 400ms;
+  }
+
+  .landing__board-item:nth-child(2) .us-pill {
+    animation-delay: 460ms;
+  }
+
+  .landing__board-item:nth-child(3) .us-pill {
+    animation-delay: 520ms;
+  }
+}
+
+.landing__board-item {
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.landing__board-item:hover {
+  background-color: var(--color-bg);
+}
+
+.landing__board-photo {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.landing__board-item:hover .landing__board-photo {
+  transform: scale(1.05);
+}
+
+.landing__visit span {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.landing__visit:hover span {
+  transform: translateX(3px);
+}
+
 /* --- Onglets Tous / Dons / Échanges / Prix --- */
 .feed-tabs {
   display: flex;
