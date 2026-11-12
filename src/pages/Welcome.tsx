@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useNavigate } from "react-router";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
@@ -104,15 +105,18 @@ export default function Welcome() {
         <div className="landing__intro">
           <p className="us-eyebrow">{welcome.eyebrow}</p>
           <h1 className="landing__title">
-            {welcome.title.split(" ").map((word, index) => (
-              <span className="landing__word" key={`${word}-${index}`}>
-                <span
-                  className="landing__word-in"
-                  style={{ animationDelay: `${60 + index * 60}ms` }}
-                >
-                  {word}
+            {welcome.title.split(" ").map((word, index, words) => (
+              <Fragment key={`${word}-${index}`}>
+                <span className="landing__word">
+                  <span
+                    className="landing__word-in"
+                    style={{ animationDelay: `${60 + index * 60}ms` }}
+                  >
+                    {word}
+                  </span>
                 </span>
-              </span>
+                {index < words.length - 1 ? " " : null}
+              </Fragment>
             ))}
           </h1>
           <p className="landing__lead">
