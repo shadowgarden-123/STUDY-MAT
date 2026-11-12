@@ -1871,6 +1871,7 @@
 
 /* --- Page d'accueil publique --- */
 .landing {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-7);
@@ -2709,4 +2710,367 @@
 
 .feed-tabs::-webkit-scrollbar {
   display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Présentation vivante : décor qui respire, titre mot à mot, fiches qui
+   lévitent. Tout est en CSS et s'arrête si les animations sont réduites.
+   -------------------------------------------------------------------------- */
+
+.landing__shapes {
+  position: absolute;
+  inset: -24px 0 auto;
+  height: 76vh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.landing__shape {
+  position: absolute;
+  display: block;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-s);
+}
+
+.landing__shape--a {
+  top: 3%;
+  left: 2%;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+
+.landing__shape--b {
+  top: 14%;
+  right: 3%;
+  width: 124px;
+  height: 78px;
+}
+
+.landing__shape--c {
+  top: 54%;
+  left: 43%;
+  width: 58px;
+  height: 58px;
+  border-style: dashed;
+}
+
+.landing__shape--d {
+  top: 38%;
+  left: 4%;
+  width: 34px;
+  height: 34px;
+  background-color: var(--color-mint);
+  border-color: transparent;
+  border-radius: 50%;
+}
+
+.landing__shape--e {
+  top: 68%;
+  right: 12%;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+}
+
+@media (max-width: 899px) {
+  .landing__shapes {
+    opacity: 0.45;
+  }
+
+  .landing__shape--b,
+  .landing__shape--e {
+    display: none;
+  }
+}
+
+/* Titre découpé mot à mot, filet d'encre qui se trace dessous */
+.landing__title {
+  display: block;
+}
+
+.landing__word {
+  display: inline-block;
+  margin-bottom: -0.08em;
+  padding-bottom: 0.08em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.landing__word-in {
+  display: inline-block;
+}
+
+.landing__title::after {
+  content: "";
+  display: block;
+  width: 128px;
+  height: 4px;
+  margin-top: var(--space-4);
+  background-color: var(--color-green);
+  transform-origin: left center;
+}
+
+.landing__board-shell {
+  min-width: 0;
+}
+
+/* Le second bandeau repart dans l'autre sens */
+.landing__ticker--reverse .landing__ticker-track {
+  animation-direction: reverse;
+}
+
+/* Anneau qui respire autour du bouton final */
+.landing__final .us-btn {
+  position: relative;
+}
+
+.landing__final .us-btn::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid var(--color-green);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes landing-word {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 108%, 0) rotate(4deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes landing-draw {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes landing-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
+@keyframes landing-sway {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.03);
+  }
+
+  50% {
+    transform: translate3d(0, -3px, 0) scale(1.07);
+  }
+}
+
+@keyframes landing-orbit-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(16px, -26px, 0) rotate(10deg);
+  }
+}
+
+@keyframes landing-orbit-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(-22px, 20px, 0) rotate(-7deg);
+  }
+}
+
+@keyframes landing-orbit-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-6deg);
+  }
+
+  50% {
+    transform: translate3d(24px, 14px, 0) rotate(14deg);
+  }
+}
+
+@keyframes landing-orbit-d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(10px, 18px, 0) scale(1.25);
+  }
+}
+
+@keyframes landing-orbit-e {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-14px, -20px, 0);
+  }
+}
+
+@keyframes landing-ripple {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.94);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.09);
+  }
+}
+
+@keyframes landing-scroll-wipe {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes landing-from-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-34px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes landing-from-right {
+  from {
+    opacity: 0;
+    transform: translate3d(34px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing__intro > .landing__title {
+    animation: none;
+  }
+
+  .landing__word-in {
+    animation: landing-word 660ms var(--ease-out) both;
+  }
+
+  .landing__title::after {
+    animation: landing-draw 720ms 520ms var(--ease-out) both;
+  }
+
+  .landing__shape--a {
+    animation: landing-orbit-a 16s ease-in-out infinite;
+  }
+
+  .landing__shape--b {
+    animation: landing-orbit-b 19s ease-in-out infinite;
+  }
+
+  .landing__shape--c {
+    animation: landing-orbit-c 13s ease-in-out infinite;
+  }
+
+  .landing__shape--d {
+    animation: landing-orbit-d 11s ease-in-out infinite;
+  }
+
+  .landing__shape--e {
+    animation: landing-orbit-e 21s ease-in-out infinite;
+  }
+
+  .landing__board-shell {
+    animation: landing-float 9s ease-in-out infinite;
+  }
+
+  .landing__board-photo > * {
+    animation: landing-sway 7s ease-in-out infinite;
+  }
+
+  .landing__board-item:nth-child(1) .landing__board-photo > * {
+    animation-delay: -1.4s;
+  }
+
+  .landing__board-item:nth-child(2) .landing__board-photo > * {
+    animation-delay: -3.1s;
+  }
+
+  .landing__board-item:nth-child(3) .landing__board-photo > * {
+    animation-delay: -5.2s;
+  }
+
+  .landing__final .us-btn::after {
+    animation: landing-ripple 3.6s var(--ease-out) infinite;
+  }
+
+  /* Les titres se dévoilent par un rideau, les blocs arrivent de biais */
+  @supports (animation-timeline: view()) {
+    .landing__h2,
+    .landing__final-title {
+      animation: landing-scroll-wipe linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 20%;
+    }
+
+    .landing__use {
+      animation: landing-from-left linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 32%;
+    }
+
+    .landing__use:nth-child(2) {
+      animation-name: landing-from-right;
+    }
+
+    .landing__use:nth-child(3) {
+      animation-name: landing-scroll-in;
+    }
+
+    .landing__fact:nth-child(2) {
+      animation-range: entry 14% cover 36%;
+    }
+
+    .landing__fact:nth-child(3) {
+      animation-range: entry 18% cover 40%;
+    }
+  }
 }

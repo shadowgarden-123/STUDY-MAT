@@ -92,10 +92,29 @@ export default function Welcome() {
 
   return (
     <div className="us-container landing">
+      <div className="landing__shapes" aria-hidden="true">
+        <span className="landing__shape landing__shape--a" />
+        <span className="landing__shape landing__shape--b" />
+        <span className="landing__shape landing__shape--c" />
+        <span className="landing__shape landing__shape--d" />
+        <span className="landing__shape landing__shape--e" />
+      </div>
+
       <section className="landing__hero">
         <div className="landing__intro">
           <p className="us-eyebrow">{welcome.eyebrow}</p>
-          <h1 className="landing__title">{welcome.title}</h1>
+          <h1 className="landing__title">
+            {welcome.title.split(" ").map((word, index) => (
+              <span className="landing__word" key={`${word}-${index}`}>
+                <span
+                  className="landing__word-in"
+                  style={{ animationDelay: `${60 + index * 60}ms` }}
+                >
+                  {word}
+                </span>
+              </span>
+            ))}
+          </h1>
           <p className="landing__lead">
             Un livre de L1 qui dort dans un sac, une carte Arduino en double,
             une blouse de TP oubliée : Univ-Share remet ces objets en
@@ -116,7 +135,8 @@ export default function Welcome() {
           )}
         </div>
 
-        <aside className="landing__board" aria-label="Le tableau du campus">
+        <div className="landing__board-shell">
+          <aside className="landing__board" aria-label="Le tableau du campus">
           <div className="landing__board-head">
             <h2 className="landing__board-title">Le tableau du campus</h2>
             <p className="landing__board-count">
@@ -160,7 +180,8 @@ export default function Welcome() {
           <button type="button" className="landing__board-link" onClick={visit}>
             Parcourir les annonces
           </button>
-        </aside>
+          </aside>
+        </div>
       </section>
 
       <div className="landing__ticker" aria-hidden="true">
@@ -219,6 +240,21 @@ export default function Welcome() {
           </div>
         ))}
       </section>
+
+      <div className="landing__ticker landing__ticker--reverse" aria-hidden="true">
+        <div className="landing__ticker-track">
+          <ul className="landing__ticker-list">
+            {[...TICKER].reverse().map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <ul className="landing__ticker-list">
+            {[...TICKER].reverse().map((item) => (
+              <li key={`suite-${item}`}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
       <section className="landing__final">
         <h2 className="landing__final-title">
