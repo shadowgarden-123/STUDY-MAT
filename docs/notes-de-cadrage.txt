@@ -6,7 +6,7 @@ Projet      : Univ-Share, plateforme d'entraide entre étudiants
 Cadre       : projet MIAGE L2 - Infographie & Web design
 Équipe      : BEUGRE Adompo Chris Emmanuel
               KONAN Amenan Aoundjouet Evangeline
-              DOSSO Waïdé
+              DOSSO Waidé
               YAPO Atse Phalek
 Version     : 1.0
 Date        : .... / .... / ........
