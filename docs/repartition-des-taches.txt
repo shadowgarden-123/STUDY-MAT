@@ -5,7 +5,7 @@ UNIV-SHARE - RÉPARTITION DES TÂCHES
 Projet : Univ-Share, plateforme d'entraide entre étudiants
 Équipe : BEUGRE Adompo Chris Emmanuel
          KONAN Amenan Aoundjouet Evangeline
-         DOSSO Waïdé
+         DOSSO Waidé
          YAPO Atse Phalek
 
 Le travail a été partagé par domaine, pour que chacun ait une partie
@@ -43,7 +43,7 @@ KONAN Amenan Aoundjouet Evangeline
 - version mobile et version large de la navigation ;
 - relecture des parcours avec un compte de test.
 
-DOSSO Waïdé
+DOSSO Waidé
 -----------
 - maquettes des écrans principaux et de la version mobile ;
 - charte graphique : couleurs, typographie, espacements, arrondis ;
@@ -76,24 +76,24 @@ YAPO Atse Phalek
 
 Écran / partie                        Principal        Avec l'aide de
 
-Accueil et liste des annonces         Evangeline       Waïdé
+Accueil et liste des annonces         Evangeline       Waidé
 Recherche et filtres                  Evangeline       Chris
-Fiche annonce                         Evangeline       Waïdé
+Fiche annonce                         Evangeline       Waidé
 Publication / modification            Evangeline       Chris
 Compression de la photo               Chris            Evangeline
 Connexion, inscription, bienvenue     Chris            Phalek
 Messagerie et conversations           Phalek           Chris
 Marquer comme donné                   Phalek           Chris
 Profil                                Phalek           Evangeline
-Comment ça marche                     Phalek           Waïdé
-Données et confidentialité            Phalek           Waïdé
-Styles et composants                  Waïdé            Evangeline
-Logo, icônes, illustrations           Waïdé            -
+Comment ça marche                     Phalek           Waidé
+Données et confidentialité            Phalek           Waidé
+Styles et composants                  Waidé            Evangeline
+Logo, icônes, illustrations           Waidé            -
 Base de données                       Chris            -
 Fonctions serveur                     Chris            -
 Données de démonstration              Chris            Phalek
 Tests unitaires                       Phalek           Chris
-Audit d'affichage                     Phalek           Waïdé
+Audit d'affichage                     Phalek           Waidé
 Documentation et comptes-rendus       tous             -
 Présentation de soutenance            tous             -
 
@@ -111,12 +111,12 @@ qu'on garde dans la version 1) ont été prises ensemble.
   Rédaction des notes de cadrage et de la charte.
 
 Étape 2 - Maquettes et base
-  Waïdé avance sur les maquettes et la charte pendant que Chris met en
+  Waidé avance sur les maquettes et la charte pendant que Chris met en
   place la base de données. Evangeline prépare la structure des écrans.
 
 Étape 3 - Écrans
   Evangeline fait les écrans de consultation et de publication. Phalek
-  prend la messagerie et le profil. Waïdé fournit les composants au fur et
+  prend la messagerie et le profil. Waidé fournit les composants au fur et
   à mesure.
 
 Étape 4 - Assemblage
