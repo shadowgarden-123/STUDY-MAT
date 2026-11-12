@@ -146,3 +146,5 @@ qu'on garde dans la version 1) ont été prises ensemble.
 
 Cette partie compte autant que le code : elle a demandé plusieurs séances
 de discussion et pas mal de retours en arrière.
+
+Répartition proposée au lancement : à valider par l’équipe avant remise.

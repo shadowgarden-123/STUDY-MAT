@@ -1,0 +1,267 @@
+=====================================================================
+UNIV-SHARE - PARCOURS UTILISATEUR (NOUVELLE UX)
+=====================================================================
+
+Ce document décrit le parcours retenu après les questions posées à
+l'équipe. Il sert de référence pour refaire les écrans : chaque écran a un
+seul objectif et une seule action principale.
+
+
+---------------------------------------------------------------------
+1. LE PRINCIPE
+---------------------------------------------------------------------
+
+L'application doit se comprendre en dix secondes. On entre, on voit des
+objets réels du campus, on comprend qu'on peut les prendre ou les donner,
+et on agit.
+
+Le parcours choisit de mettre en avant trois choses, parce que ce sont
+elles qui différencient Univ-Share d'un groupe WhatsApp :
+
+- des objets concrets, avec leur photo ;
+- un état fiable : disponible ou déjà donné ;
+- une recherche immédiate, en haut de l'écran.
+
+Le don reste le mode par défaut, avec un badge « Don » visible sur les
+cartes. C'est la promesse du projet : faire circuler le matériel, pas
+seulement le revendre.
+
+
+---------------------------------------------------------------------
+2. LE PARCOURS EN BREF
+---------------------------------------------------------------------
+
+  Présentation  ->  Visite libre  ->  Création de compte
+       |                 |                  |
+       |                 v                  v
+       |           Annonces, fiche     Accueil personnalisé
+       |           (sans agir)         (recherche + onglets)
+       |                                    |
+       |                                    v
+       |                            Fiche -> « Je suis intéressé »
+       |                                    |
+       |                                    v
+       |                            Message prérempli -> Conversation
+       |                                    |
+       |                                    v
+       +------------------------->  Mes échanges -> Objet donné
+
+Deux entrées seulement : celui qui cherche un objet, et celui qui en
+donne. Les deux passent par la même fiche et la même conversation.
+
+
+---------------------------------------------------------------------
+3. ÉCRAN 1 - PRÉSENTATION (avant connexion)
+---------------------------------------------------------------------
+
+Objectif : faire comprendre le service en quelques secondes et proposer
+deux issues claires.
+
+Contenu, dans l'ordre :
+- le nom et l'accroche : « Donner, échanger, partager le matériel du
+  campus. » ;
+- une phrase de explication : du matériel de cours qui circule entre
+  étudiants, en don, en échange ou à petit prix ;
+- trois preuves courtes, avec une icône chacune :
+    . « Trouve un objet en une minute » (recherche) ;
+    . « Donne ce qui dort dans ton sac » (publication) ;
+    . « Contacte sans donner ton numéro » (messagerie).
+- deux boutons : « Créer un compte » (principal, vert) et
+  « J'ai déjà un compte » (secondaire) ;
+- un lien discret : « Visiter sans compte ».
+
+Règle : pas de carrousel, pas de vidéo, pas de défilement obligatoire.
+Tout tient sur un écran de téléphone.
+
+Après la visite, on lui propose à nouveau de créer un compte (voir § 4).
+
+
+---------------------------------------------------------------------
+4. ÉCRAN 2 - VISITE SANS COMPTE
+---------------------------------------------------------------------
+
+Objectif : laisser voir la valeur avant de demander quoi que ce soit.
+
+Ce qui est ouvert en visite :
+- le fil des annonces et la recherche ;
+- les onglets Tous / Dons / Échanges / Prix ;
+- la fiche complète d'une annonce ;
+- la page Comment ça marche.
+
+Ce qui demande un compte :
+- contacter un donneur ;
+- publier une annonce ;
+- garder une annonce en favori ;
+- voir ses messages.
+
+Quand la personne tente une de ces actions, on n'affiche pas une erreur :
+on ouvre une feuille avec le titre « Crée ton compte pour continuer »,
+deux lignes qui rappellent ce que ça débloque, le bouton « Créer un
+compte » et un lien « Continuer la visite ».
+
+Deuxième rappel, une seule fois : après avoir consulté trois fiches, un
+bandeau bas de page propose « Crée ton compte pour contacter les
+donneurs ». Il se ferme et ne revient pas dans la même visite.
+
+Le compte se crée par code à 6 chiffres reçu par e-mail, puis on demande
+le nom et le niveau d'études. Ensuite, on revient exactement là où la
+personne s'était arrêtée : même annonce, même conversation, même
+formulaire.
+
+
+---------------------------------------------------------------------
+5. ÉCRAN 3 - ACCUEIL (connecté)
+---------------------------------------------------------------------
+
+Objectif : trouver vite, ou publier vite.
+
+De haut en bas :
+- une ligne de salutation courte : « Bonjour Awa » ;
+- la recherche, toujours visible, avec le placeholder « Cherche un livre,
+  un kit, une blouse… » ;
+- quatre onglets : Tous, Dons, Échanges, Prix. Chaque onglet affiche le
+  nombre d'annonces disponibles ;
+- le fil des annonces.
+
+Sur chaque carte :
+- la photo de l'objet (ou l'illustration de remplacement) ;
+- le badge du mode : Don, Échange ou le prix en FCFA ;
+- le titre, le lieu, la date relative ;
+- l'état : disponible, ou « Donné » avec la carte atténuée.
+
+Les annonces données restent visibles une semaine dans l'onglet Tous,
+avec leur badge. C'est la preuve que le site fonctionne, et ça évite de
+relancer un donneur pour rien.
+
+En haut, à droite : un accès au profil.
+
+
+---------------------------------------------------------------------
+6. ÉCRAN 4 - FICHE ANNONCE
+---------------------------------------------------------------------
+
+Objectif : décider, puis contacter en un geste.
+
+Contenu :
+- la photo en grand ;
+- le badge du mode et l'état (disponible / donné) ;
+- le titre, la description, la catégorie, le lieu, la date ;
+- l'auteur : prénom, niveau, badge « étudiant vérifié » ;
+- les actions secondaires : garder, partager sur WhatsApp, signaler.
+
+Action principale, en bas, pleine largeur : « Je suis intéressé ».
+
+Quand on appuie :
+- si on n'est pas connecté : feuille « Crée ton compte pour continuer »,
+  puis retour sur la fiche ;
+- si on est connecté : la conversation s'ouvre avec le message déjà
+  écrit : « Bonjour, ton [titre de l'annonce] est toujours disponible ? ».
+  La personne peut le modifier ou l'envoyer tel quel.
+
+Si l'annonce est déjà donnée, le bouton est remplacé par un bandeau
+« Cet objet a déjà été donné » et un lien « Voir les annonces similaires ».
+
+
+---------------------------------------------------------------------
+7. ÉCRAN 5 - PUBLIER (deux étapes)
+---------------------------------------------------------------------
+
+Objectif : publier en moins d'une minute, sans se perdre.
+
+Étape 1 - « Qu'est-ce que tu donnes ? »
+- la photo, en premier, avec un cadre qui montre le rendu final ;
+- le titre, avec une aide courte : « Ex. : Kit Arduino, livre de compta » ;
+- la description, facultative mais recommandée ;
+- un bouton « Continuer ».
+
+Étape 2 - « Comment tu veux le partager ? »
+- le mode, en trois choix visibles : Don (sélectionné par défaut),
+  Échange, Prix symbolique ;
+- si Échange : le champ « Ce que tu recherches » ;
+- si Prix : le montant en FCFA, entre 100 et 50 000 ;
+- le lieu de remise, en liste courte ;
+- la catégorie, déjà proposée d'après le titre, modifiable ;
+- le bouton « Publier mon annonce ».
+
+Une barre indique « Étape 1 sur 2 ». Le brouillon est conservé si on
+quitte. Après publication : « Ton annonce est en ligne. » avec deux
+actions, « Voir mon annonce » et « Partager sur WhatsApp ».
+
+
+---------------------------------------------------------------------
+8. ÉCRAN 6 - MESSAGES ET MES ÉCHANGES
+---------------------------------------------------------------------
+
+Objectif : suivre ce qui est en cours, sans mélanger avec le reste.
+
+La barre de navigation basse a quatre entrées, avec Publier au centre,
+plus grand et en vert :
+  Accueil | Publier | Messages | Profil
+
+L'onglet Messages contient deux parties :
+- « Conversations » : les échanges en cours, avec le nom, l'objet, le
+  dernier message et le compteur de non-lus ;
+- « Mes échanges » : la liste des objets promis ou à récupérer, avec
+  trois états simples : à convenir, promis, terminé.
+
+Chaque ligne de « Mes échanges » indique l'objet, la personne, le lieu
+convenu et l'action attendue. C'est là qu'on marque un objet comme
+donné, avec la possibilité d'annuler pendant 10 minutes.
+
+Dans la conversation, un bandeau rappelle l'objet concerné, le lieu de
+remise et l'état. Le bouton « Marquer comme donné » reste accessible
+sans quitter la discussion.
+
+Quand un objet est marqué donné, les autres personnes qui avaient écrit
+reçoivent un message système : « Cet objet a trouvé preneur. »
+
+
+---------------------------------------------------------------------
+9. ÉCRAN 7 - PROFIL
+---------------------------------------------------------------------
+
+Objectif : retrouver ce qu'on a fait, et gérer son compte.
+
+- nom, niveau, badge étudiant vérifié ;
+- mes annonces (disponibles et données) ;
+- mes annonces gardées ;
+- mon lien d'invitation ;
+- les pages d'aide (Comment ça marche, Données et confidentialité) ;
+- la suppression du compte.
+
+
+---------------------------------------------------------------------
+10. CE QUI CHANGE PAR RAPPORT À LA VERSION ACTUELLE
+---------------------------------------------------------------------
+
+- une vraie page de présentation avant le fil, avec le bouton « Visiter
+  sans compte » (aujourd'hui l'accueil mélange présentation et fil) ;
+- un mode visite explicite, avec deux relances seulement ;
+- les onglets Tous / Dons / Échanges / Prix au-dessus du fil ;
+- le bouton « Je suis intéressé » et le message prérempli ;
+- la publication en deux étapes au lieu d'un seul écran ;
+- l'onglet « Mes échanges » à côté des conversations ;
+- Publier au centre de la barre de navigation, plus visible.
+
+
+---------------------------------------------------------------------
+11. MICRO-COPIE À RETENIR
+---------------------------------------------------------------------
+
+Présentation   « Donner, échanger, partager le matériel du campus. »
+               « Crée un compte » / « J'ai déjà un compte »
+               « Visiter sans compte »
+
+Fiche          « Je suis intéressé »
+               « Cet objet a déjà été donné. »
+
+Message        « Bonjour, ton [objet] est toujours disponible ? »
+
+Publication    « Qu'est-ce que tu donnes ? »
+               « Comment tu veux le partager ? »
+               « Ton annonce est en ligne. »
+
+Suivi          « À convenir » / « Promis » / « Terminé »
+               « Marquer comme donné »
+
+Relance        « Crée ton compte pour contacter les donneurs. »

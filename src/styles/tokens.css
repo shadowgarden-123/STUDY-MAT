@@ -1,0 +1,73 @@
+/* Design tokens — Univ-Share
+   Aucune valeur de couleur, d'espace ou de rayon en dur hors de ce fichier. */
+
+:root {
+  /* Palette */
+  --color-green: #0f6b4f;
+  --color-green-hover: #0a4f3a;
+  --color-green-active: #073b2b;
+  --color-yellow: #f5b800;
+  --color-ink: #14201b;
+  --color-mint: #dceee4;
+  --color-bg: #f5f7f2;
+  --color-white: #ffffff;
+
+  /* Dérivés documentés dans DECISIONS.md */
+  --color-text-soft: #33473d;
+  --color-muted: #5b6b63;
+  --color-line: #dde3df;
+  --color-danger: #b3261e;
+  --color-danger-soft: #fbeae8;
+  --color-yellow-soft: #fdf3d4;
+  --color-mint-deep: #c4e2d2;
+  --color-overlay: rgba(20, 32, 27, 0.5);
+  --color-on-green-hover: rgba(255, 255, 255, 0.14);
+  --color-ink-soft: rgba(20, 32, 27, 0.08);
+
+  /* Rayons */
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-pill: 999px;
+
+  /* Espaces (grille 4 px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Cibles et mise en page */
+  --tap: 44px;
+  --container: 1120px;
+  --gutter: var(--space-4);
+  --tabbar-space: calc(72px + env(safe-area-inset-bottom, 0px));
+
+  /* Typographie */
+  --font-title: "Bricolage Grotesque", "Bricolage Fallback", system-ui, sans-serif;
+  --font-body: "Nunito Sans", "Nunito Fallback", system-ui, -apple-system, sans-serif;
+  --text-title: 2rem;
+  --text-subtitle: 1.25rem;
+  --text-body: 1rem;
+  --text-caption: 0.8125rem;
+  --leading-title: 1.15;
+  --leading-body: 1.5;
+
+  /* Mouvement */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  /* Élévation — uniquement sur les éléments flottants */
+  --shadow-float: 0 10px 30px rgba(20, 32, 27, 0.1), 0 2px 6px rgba(20, 32, 27, 0.05);
+  --shadow-dialog: 0 24px 60px rgba(20, 32, 27, 0.22);
+
+  /* Couche */
+  --z-tabbar: 40;
+  --z-topnav: 45;
+  --z-sheet: 70;
+  --z-dialog: 80;
+  --z-toast: 90;
+}
