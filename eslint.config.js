@@ -6,7 +6,17 @@ import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  {
+    ignores: [
+      "dist",
+      "freebuff-sites-build",
+      "isolate",
+      "artifacts",
+      ".push-clone",
+      // Types générés par Convex : ce n'est pas du code à relire.
+      "src/convex/_generated",
+    ],
+  },
   {
     extends: [
       js.configs.recommended,

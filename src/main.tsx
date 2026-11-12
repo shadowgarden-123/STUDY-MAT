@@ -2,7 +2,6 @@ import "@vly-ai/integrations";
 import "@fontsource/bricolage-grotesque/latin-700.css";
 import "@fontsource/nunito-sans/latin-400.css";
 import "@fontsource/nunito-sans/latin-700.css";
-import "./index.css";
 import "./styles/tokens.css";
 import "./styles/base.css";
 import "./styles/components.css";
@@ -21,7 +20,6 @@ import {
   useLocation,
   useNavigationType,
 } from "react-router";
-import { VlyToolbar } from "../vly-toolbar-readonly.tsx";
 
 import { AuthProvider, useSession } from "@/auth/AuthContext";
 import { RequireAuth } from "@/auth/RequireAuth";
@@ -101,23 +99,6 @@ function ScrollToTop() {
   return null;
 }
 
-/** Filet de sécurité : une erreur ne doit jamais laisser une page blanche. */
-class ToolbarErrorBoundary extends React.Component<
-  { children: React.ReactNode },
-  { hasError: boolean }
-> {
-  state = { hasError: false };
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  componentDidCatch(err: Error) {
-    console.warn("[VlyToolbar] error, toolbar disabled:", err.message);
-  }
-  render() {
-    return this.state.hasError ? null : this.props.children;
-  }
-}
-
 class RootErrorBoundary extends React.Component<
   { children: React.ReactNode },
   { hasError: boolean; message: string }
@@ -159,9 +140,6 @@ class RootErrorBoundary extends React.Component<
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RootErrorBoundary>
-      <ToolbarErrorBoundary>
-        <VlyToolbar />
-      </ToolbarErrorBoundary>
       <ConvexAuthProvider client={convex}>
         <BrowserRouter>
           <AuthProvider>

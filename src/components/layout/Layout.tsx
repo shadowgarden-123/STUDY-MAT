@@ -23,11 +23,30 @@ function ReferralCapture() {
   return null;
 }
 
+const SEED_SESSION_KEY = "univ-share:graines";
+
 export function Layout() {
   const ensureSeed = useMutation(api.seed.ensure);
 
+  // Le jeu de démonstration est déjà idempotent côté serveur. On évite en plus
+  // d'appeler une mutation d'écriture à chaque changement de page : une fois
+  // par session suffit, et on ne marque la session qu'en cas de succès.
   useEffect(() => {
-    ensureSeed({}).catch(() => undefined);
+    try {
+      if (window.sessionStorage.getItem(SEED_SESSION_KEY) === "1") return;
+    } catch {
+      /* stockage indisponible : le serveur reste seul juge */
+    }
+
+    ensureSeed({})
+      .then(() => {
+        try {
+          window.sessionStorage.setItem(SEED_SESSION_KEY, "1");
+        } catch {
+          /* sans stockage, on retentera au prochain écran */
+        }
+      })
+      .catch(() => undefined);
   }, [ensureSeed]);
 
   return (
