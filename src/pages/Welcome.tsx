@@ -33,6 +33,20 @@ const FACTS = [
   { title: "Sans numéro exposé", text: "La messagerie remplace les échanges de contacts." },
 ];
 
+/* Bandeau qui défile sous l'accroche : ce qui circule sur le campus. */
+const TICKER = [
+  "Livres de L1",
+  "Polycopiés",
+  "Cours et TD",
+  "Composants",
+  "Cartes Arduino",
+  "Blouses de TP",
+  "Calculatrices",
+  "Matériel de labo",
+  "Rapports reliés",
+  "Clés USB",
+];
+
 export default function Welcome() {
   const navigate = useNavigate();
   const track = useAnalytics();
@@ -148,6 +162,21 @@ export default function Welcome() {
           </button>
         </aside>
       </section>
+
+      <div className="landing__ticker" aria-hidden="true">
+        <div className="landing__ticker-track">
+          <ul className="landing__ticker-list">
+            {TICKER.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <ul className="landing__ticker-list">
+            {TICKER.map((item) => (
+              <li key={`suite-${item}`}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
       <section className="landing__uses" aria-labelledby="landing-uses">
         <h2 className="landing__h2" id="landing-uses">

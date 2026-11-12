@@ -1969,9 +1969,20 @@
 }
 
 .landing__board-count {
+  display: flex;
+  gap: 6px;
+  align-items: center;
   margin: 0;
   color: var(--color-muted);
   font-size: var(--text-caption);
+}
+
+.landing__board-count::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-green);
+  border-radius: var(--radius-pill);
 }
 
 .landing__board-list {
@@ -2261,7 +2272,13 @@
   }
 
   .landing__board {
-    animation: landing-rise var(--dur-enter) var(--ease-out) 200ms both;
+    animation:
+      landing-rise var(--dur-enter) var(--ease-out) 200ms both,
+      landing-paper 26s linear infinite;
+  }
+
+  .landing__board-count::before {
+    animation: landing-pulse 2.6s var(--ease-out) infinite;
   }
 
   .landing__board-item {
@@ -2310,11 +2327,140 @@
 }
 
 .landing__board-item:hover .landing__board-photo {
-  transform: scale(1.05);
+  transform: scale(1.06) rotate(-2deg);
 }
 
 .landing__visit span {
   transition: transform var(--dur-fast) var(--ease-out);
+}
+
+/* Bandeau qui défile : ce qui circule sur le campus */
+.landing__ticker {
+  overflow: hidden;
+  margin-block: calc(-1 * var(--space-4));
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--color-line);
+}
+
+.landing__ticker-track {
+  display: flex;
+  width: max-content;
+}
+
+.landing__ticker-list {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+  margin: 0;
+  padding: 0 var(--space-6) 0 0;
+  color: var(--color-text-soft);
+  font-family: var(--font-title);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+.landing__ticker-list li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  white-space: nowrap;
+}
+
+.landing__ticker-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-green);
+  border-radius: var(--radius-pill);
+}
+
+@keyframes landing-ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes landing-paper {
+  to {
+    background-position: 28px 28px;
+  }
+}
+
+@keyframes landing-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.75);
+  }
+}
+
+@keyframes landing-scroll-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-10deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .landing__ticker-track {
+    animation: landing-ticker 38s linear infinite;
+  }
+
+  .landing__ticker:hover .landing__ticker-track {
+    animation-play-state: paused;
+  }
+
+  /* Les sections du bas se posent au fil du défilement, quand le navigateur
+     sait suivre une timeline de vue ; sinon elles restent simplement visibles. */
+  @supports (animation-timeline: view()) {
+    .landing__uses > *,
+    .landing__fact,
+    .landing__final > * {
+      animation: landing-scroll-in linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 30%;
+    }
+
+    .landing__step {
+      animation: landing-scroll-in linear both;
+      animation-timeline: view();
+      animation-range: entry 4% cover 26%;
+    }
+
+    .landing__step-num {
+      animation: landing-pop linear both;
+      animation-timeline: view();
+      animation-range: entry 18% cover 30%;
+    }
+  }
 }
 
 .landing__visit:hover span {
