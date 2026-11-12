@@ -121,7 +121,7 @@ propre travail seul.
 - Faut-il imprimer une affiche avec un QR code, et avec quel budget ?
 - Qui répond aux signalements pendant la phase de test.
 - Faut-il montrer les statistiques aux associations de filière, ou les
-garder pour l'équipe.
+  garder pour l'équipe.
 - Date de la répétition générale avant la soutenance.
 
 
