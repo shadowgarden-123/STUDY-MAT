@@ -62,3 +62,4 @@ src/lib          formats, recherche, compression des photos
 - `docs/compte-rendu-kickoff.txt`
 - `docs/repartition-des-taches.txt`
 - `docs/choix-graphiques.txt`
+- `docs/parcours-utilisateur.txt`
