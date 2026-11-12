@@ -1,0 +1,148 @@
+=====================================================================
+UNIV-SHARE - RÉPARTITION DES TÂCHES
+=====================================================================
+
+Projet : Univ-Share, plateforme d'entraide entre étudiants
+Équipe : BEUGRE Adompo Chris Emmanuel
+         KONAN Amenan Aoundjouet Evangeline
+         DOSSO Waïdé
+         YAPO Atse Phalek
+
+Le travail a été partagé par domaine, pour que chacun ait une partie
+complète à suivre du début à la fin. La répartition ci-dessous est celle
+qui a été retenue au lancement ; elle a été ajustée en cours de route quand
+une partie prenait plus de temps que prévu. Les tests et la relecture, eux,
+ont toujours été faits à plusieurs.
+
+
+---------------------------------------------------------------------
+1. RÉPARTITION PAR DOMAINE
+---------------------------------------------------------------------
+
+BEUGRE Adompo Chris Emmanuel
+---------------------------
+- mise en place du projet et de la structure des dossiers ;
+- schéma de la base de données (utilisateurs, annonces, favoris,
+  conversations, messages, signalements) ;
+- fonctions serveur : publication, modification, suppression, recherche,
+  favoris, signalements ;
+- authentification par code à 6 chiffres et gestion de la session ;
+- règles de gestion côté serveur (droits de l'auteur, lecture des
+  conversations, contrôle des prix et des longueurs) ;
+- jeu de données de démonstration ;
+- intégration finale et corrections avant la soutenance.
+
+KONAN Amenan Aoundjouet Evangeline
+----------------------------------
+- écran d'accueil : présentation, recherche, filtres, liste des annonces ;
+- filtres conservés dans l'adresse de la page ;
+- fiche annonce : photo, informations, partage, favori, signalement ;
+- formulaire de publication et d'édition, avec aperçu de la photo ;
+- navigation entre les écrans et retour à la page demandée après
+  connexion ;
+- version mobile et version large de la navigation ;
+- relecture des parcours avec un compte de test.
+
+DOSSO Waïdé
+-----------
+- maquettes des écrans principaux et de la version mobile ;
+- charte graphique : couleurs, typographie, espacements, arrondis ;
+- feuilles de style et variables CSS ;
+- composants d'interface : boutons, champs, étiquettes, dialogues,
+  messages de confirmation, avatars ;
+- logo, icônes et illustrations ;
+- accessibilité : contrastes, focus visible, taille des cibles tactiles,
+  un seul titre principal par page ;
+- vérification de l'affichage sur petit et grand écran, et avec le texte
+  agrandi.
+
+YAPO Atse Phalek
+----------------
+- messagerie : liste des conversations, fil de discussion, envoi d'un
+  message ;
+- compteur de messages non lus ;
+- bouton « marquer comme donné » et annulation pendant 10 minutes ;
+- écran profil : mes annonces, mes favoris, suppression du compte ;
+- pages Comment ça marche et Données et confidentialité ;
+- tests unitaires (formats de prix, dates relatives, recherche sans
+  accents, suggestion de catégorie) ;
+- audit d'affichage automatisé et relevé des problèmes ;
+- relecture des textes du site et préparation des messages de lancement.
+
+
+---------------------------------------------------------------------
+2. QUI A FAIT QUOI, ÉCRAN PAR ÉCRAN
+---------------------------------------------------------------------
+
+Écran / partie                        Principal        Avec l'aide de
+
+Accueil et liste des annonces         Evangeline       Waïdé
+Recherche et filtres                  Evangeline       Chris
+Fiche annonce                         Evangeline       Waïdé
+Publication / modification            Evangeline       Chris
+Compression de la photo               Chris            Evangeline
+Connexion, inscription, bienvenue     Chris            Phalek
+Messagerie et conversations           Phalek           Chris
+Marquer comme donné                   Phalek           Chris
+Profil                                Phalek           Evangeline
+Comment ça marche                     Phalek           Waïdé
+Données et confidentialité            Phalek           Waïdé
+Styles et composants                  Waïdé            Evangeline
+Logo, icônes, illustrations           Waïdé            -
+Base de données                       Chris            -
+Fonctions serveur                     Chris            -
+Données de démonstration              Chris            Phalek
+Tests unitaires                       Phalek           Chris
+Audit d'affichage                     Phalek           Waïdé
+Documentation et comptes-rendus       tous             -
+Présentation de soutenance            tous             -
+
+Chacun a relu les parties des autres avant la mise en ligne. Les décisions
+qui concernaient tout le monde (choix des couleurs, ton des textes, ce
+qu'on garde dans la version 1) ont été prises ensemble.
+
+
+---------------------------------------------------------------------
+3. DÉROULÉ DU TRAVAIL
+---------------------------------------------------------------------
+
+Étape 1 - Cadrage
+  Tout le monde. Choix du sujet, du nom, du public et des fonctionnalités.
+  Rédaction des notes de cadrage et de la charte.
+
+Étape 2 - Maquettes et base
+  Waïdé avance sur les maquettes et la charte pendant que Chris met en
+  place la base de données. Evangeline prépare la structure des écrans.
+
+Étape 3 - Écrans
+  Evangeline fait les écrans de consultation et de publication. Phalek
+  prend la messagerie et le profil. Waïdé fournit les composants au fur et
+  à mesure.
+
+Étape 4 - Assemblage
+  Chris relie les écrans aux fonctions serveur, corrige les erreurs et
+  vérifie les droits d'accès.
+
+Étape 5 - Vérifications
+  Tests unitaires, audit d'affichage aux trois largeurs, relecture des
+  textes, parcours complet à deux comptes sur téléphone.
+
+Étape 6 - Lancement
+  Phalek et Evangeline préparent les messages et la présentation en cours.
+  Tout le monde participe à la collecte des premières annonces.
+
+
+---------------------------------------------------------------------
+4. CE QUI A ÉTÉ FAIT ENSEMBLE
+---------------------------------------------------------------------
+
+- choix du sujet et du nom ;
+- décisions sur les fonctionnalités à garder ou à écarter ;
+- choix des couleurs et de la typographie ;
+- relecture des textes affichés sur le site ;
+- tests avec les étudiants de la filière ;
+- corrections après les tests ;
+- préparation de la soutenance.
+
+Cette partie compte autant que le code : elle a demandé plusieurs séances
+de discussion et pas mal de retours en arrière.
