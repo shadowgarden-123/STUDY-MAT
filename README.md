@@ -53,7 +53,7 @@ src/lib          formats, recherche, compression des photos
 
 - BEUGRE Adompo Chris Emmanuel
 - KONAN Amenan Aoundjouet Evangeline
-- DOSSO Waïdé
+- DOSSO Waidé
 - YAPO Atse Phalek
 
 ## Documents
