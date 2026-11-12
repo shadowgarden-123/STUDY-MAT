@@ -59,7 +59,7 @@ export default function ListingDetail() {
     value: boolean;
   } | null>(null);
   const saved =
-    listing && favoriteOverride?.id === listing._id
+    listing && favoriteOverride && favoriteOverride.id === listing._id
       ? favoriteOverride.value
       : (listing?.isFavorite ?? false);
   const [bouncing, setBouncing] = useState(false);
