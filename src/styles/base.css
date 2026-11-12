@@ -169,6 +169,11 @@ hr {
   padding-bottom: calc(var(--tabbar-space) + var(--space-5));
 }
 
+/* Sans barre d'onglets (visiteur non connecté), pas de réserve en bas. */
+.us-main--sans-onglets {
+  padding-bottom: var(--space-5);
+}
+
 .us-page {
   padding-top: var(--space-5);
 }
