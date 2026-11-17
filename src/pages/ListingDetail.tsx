@@ -332,7 +332,9 @@ export default function ListingDetail() {
                 variant="quiet"
                 size="small"
                 icon="flag"
-                onClick={() => setReportOpen(true)}
+                onClick={() =>
+                  isAuthenticated ? setReportOpen(true) : setGateOpen(true)
+                }
               >
                 {fr.actions.report}
               </Button>

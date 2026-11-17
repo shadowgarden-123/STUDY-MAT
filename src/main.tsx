@@ -21,14 +21,13 @@ import {
   useNavigationType,
 } from "react-router";
 
-import { AuthProvider, useSession } from "@/auth/AuthContext";
+import { AuthProvider } from "@/auth/AuthContext";
 import { RequireAuth } from "@/auth/RequireAuth";
 import { Layout } from "@/components/layout/Layout";
 import { Logo } from "@/components/icons/Logo";
 import { ToastProvider } from "@/components/ui/Toast";
 
 const Home = lazy(() => import("@/pages/Home"));
-const Welcome = lazy(() => import("@/pages/Welcome"));
 const ListingDetail = lazy(() => import("@/pages/ListingDetail"));
 const Publish = lazy(() => import("@/pages/Publish"));
 const Messages = lazy(() => import("@/pages/Messages"));
@@ -42,17 +41,6 @@ const Styleguide = lazy(() => import("@/pages/Styleguide"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
-
-/**
- * Entrée du site : la présentation passe avant le fil, pour tout le monde.
- * Le fil des annonces vit sur /annonces.
- */
-function Entry() {
-  const { isLoading } = useSession();
-
-  if (isLoading) return <RouteLoading />;
-  return <Welcome />;
-}
 
 function RouteLoading() {
   return (
@@ -149,7 +137,7 @@ createRoot(document.getElementById("root")!).render(
               <Suspense fallback={<RouteLoading />}>
                 <Routes>
                   <Route element={<Layout />}>
-                    <Route path="/" element={<Entry />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/annonces" element={<Home />} />
                     <Route path="/annonce/:id" element={<ListingDetail />} />
                     <Route

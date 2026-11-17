@@ -9,6 +9,7 @@ import { OpenBagArt } from "@/components/icons/Illustrations";
 import { Button } from "@/components/ui/UsButton";
 import { TextField } from "@/components/ui/Fields";
 import { Icon } from "@/components/icons/Icon";
+import { GoogleDemoButton } from "@/components/auth/GoogleDemoButton";
 
 type Mode = "login" | "register";
 
@@ -271,6 +272,8 @@ export default function AuthPage({ mode }: { mode: Mode }) {
                 </Button>
               </form>
             )}
+
+            <GoogleDemoButton returnTo={returnTo} />
 
             <p className="auth__switch">
               {isRegister ? fr.auth.switchToLogin : fr.auth.switchToSignup}{" "}

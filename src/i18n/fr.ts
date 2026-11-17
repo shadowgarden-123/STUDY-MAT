@@ -279,6 +279,12 @@ export const fr = {
     switchToLogin: "Tu as déjà un compte ?",
     login: "Se connecter",
     signup: "Créer mon compte",
+    or: "ou",
+    google: "Se connecter avec Google",
+    googleNote:
+      "Option simulée pour le prototype : la session de démonstration s'ouvre sans compte Google.",
+    googleError:
+      "La connexion de démonstration n'a pas pu s'ouvrir. Réessaie, ou passe par ton e-mail.",
     codeError: "Ce code n'est pas valide. Vérifie les 6 chiffres.",
     emailError: "Impossible d'envoyer le code. Vérifie ton e-mail et réessaie.",
     requiredEmail: "Indique ton e-mail étudiant.",
@@ -511,12 +517,12 @@ export const fr = {
       note: "Gratuit, sans mot de passe : un code à 6 chiffres suffit.",
     },
     gate: {
-      title: "Crée ton compte pour continuer",
-      text: "La visite reste libre. Un compte débloque trois choses :",
+      title: "Connecte-toi pour continuer",
+      text: "Regarder les annonces reste libre. Pour prendre un objet, échanger avec un donneur ou publier, il te faut un compte étudiant :",
       perks: ["Contacter un donneur", "Publier un objet", "Garder une annonce"],
       keepVisiting: "Continuer la visite",
       signup: "Créer un compte",
-      login: "J'ai déjà un compte",
+      login: "Se connecter",
     },
     nudge: {
       title: "Crée ton compte pour contacter les donneurs.",
