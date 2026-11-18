@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.push-clone
+isolate
+artifacts
+freebuff-sites-build
+.wrangler
+.vercel
+docs
+sites
+sites.manifest.json
+wrangler.local.jsonc
+scripts
+.env.local
